@@ -77,7 +77,7 @@ we can simplify this to
 We note that $w^1_t + w^2_t = 4$ always in this example. From the lecture, we know that after we normalize prices $p_0 = p$, we have that the prices are given by:
 \[ p_t = p\beta^t \frac{w^1_0 + w^2_0}{w^1_t + w^2_t} = p\beta^t \]
 Using the fact that the budget constraint binds, we have
-\[ c^i_t = p(1-\beta)\sum_{k=0}^\infty \beta^k w^i_k \]
+\[ c^i_t = (1-\beta)\sum_{k=0}^\infty \beta^k w^i_k \]
 
 We compute
 \[ \phi_1 = \sum_{k=0}^\infty \beta^k w^1_k = \frac{1}{1-\beta} + \frac{2\beta }{1-\beta^2} = \frac{1 + 3\beta }{1-\beta^2} \]
@@ -153,15 +153,67 @@ To implement $c^1_t =  c^2_t = 2$, we then have:
 \[ \tau^2 = \frac{p}{1-\beta}\left(2 - \frac{3+\beta}{1+\beta} \right) = -\frac{p}{1+\beta} \]
 \problem{2}
 \problempart{(1)}
-The demand of consumer of type $i$ is given by
-\[ [x^i(\vector{p})]_t = \frac{\beta^t(1-\beta)(\vector{w^1} \cdot \vector{p})}{p_t} \]
+Following the same process as in problem 1 part 3, we get that the equilibrium prices are
+\[ \vector{p} = \left\{ p\beta^t \frac{w^1_0 + w^2_0}{w^1_t + w^2_t} \right\}_{t=0}^\infty \]
+And consumption is given by
+\[ \vector{c}^1 = \left\{ (w^1_t + w^2_t)\psi^1 \right\}_{t=0}^\infty \]
+\[ \vector{c}^2 = \left\{ (w^1_t + w^2_t)\psi^2 \right\}_{t=0}^\infty \]
+where
+\[ \psi^i = (1-\beta)\sum_{k=0}^\infty \beta^k \frac{w^i_k}{w^1_k + w^2_k} \]
+We note that at equilibrium, both groups of consumers insure in some sense, so that each consumer always consumes the same fraction of the total endowment at each period. We note that if the total endowment in each period is the same, then each group's consumption is constant across time. We also note the prices of the period $t$ goods depends linearly on the size of the total endowment for that time period, which also makes sense.
 \problempart{(2)}
+The continuation welfare under autarky is just the utility from consuming the endowment from period $t$ on, which is
+\[ \sum_{k=t}^\infty \beta^k \log w^i_k \]
 \problempart{(3)}
+Whether consumers deviate depends on whether their continuation welfare under autarky is higher than their continuation welfare under the Arrow-Debreu equilibrium. Specifically, if
+\[ \sum_{k=t}^\infty \beta^k \log w^i_k > \sum_{k=t}^\infty \beta^k \log c^i_k \]
+for any $i, t$, the consumers of type $i$ will be incentivized to break the contract at time $t$. For the scenario in question 1, the condition for consumers of type i to remain in the contract is given by
+\[ \sum_{k=t}^\infty \beta^k \log w^i_k \le \sum_{k=t}^\infty \beta^k \log c^i_k \]
+Since the endowment is temporally periodic (with period 2), it suffices to check this condition for times $t=0$, $t=1$. However, we know that users maximize their utility in an Arrow-Debreu equilibrium, so since everyone's endowment is feasible to consume, the continuation welfare under autarky at $t=0$ must be at most the continuation welfare under the Arrow-Debreu equilibrium at $t=0$. Therefore, we only have to check $t=1$. For consumers of type 1, we have
+\[ \sum_{k=1}^\infty \beta^k \log w^1_k \le \sum_{k=1}^\infty \beta^k \log \frac{1+3\beta}{1+\beta} \]
+\[ \sum_{k=1}^\infty \beta^k \log w^1_k \le \frac{\beta}{1-\beta}\log \frac{1+3\beta}{1+\beta} \]
+\[ \frac{\beta \log 3}{1-\beta^2} \le \frac{\beta}{1-\beta}\log \frac{1+3\beta}{1+\beta} \]
+\[ \frac{\log 3}{1+\beta} \le \log \frac{1+3\beta}{1+\beta} \]
+For consumers of type 2, we have
+\[ \sum_{k=1}^\infty \beta^k \log w^2_k \le \sum_{k=1}^\infty \beta^k \log \frac{3+\beta}{1+\beta} \]
+\[ \frac{\beta^2 \log 3}{1-\beta^2} \le \frac{\beta}{1-\beta}\log \frac{3+\beta}{1+\beta} \]
+\[ \frac{\beta \log 3}{1+\beta} \le \log \frac{3+\beta}{1+\beta} \]
+We note that the consumer of type 2's condition is weaker than the condition for the consumer of type 1, since
+\[ \frac{\beta \log 3}{1+\beta} < \frac{\log 3}{1+\beta} \]
+\[ \frac{3+\beta}{1+\beta} \ge \frac{1+3\beta}{1+\beta} \]
+Hence, we only require $\beta$ such that
+\[ \log 3 \le (1+\beta) \log \frac{1+3\beta}{1+\beta} \]
+Using a numerical solver, we see this occurs for $\beta \ge 0.762403 = \beta^* $. Hence, for $\beta > \beta^*$, the consumers are incentivized to stick to the Arrow-Debreu equilibrium, but for $\beta < \beta^*$, there is incentive to break the contract.
 \problempart{(4)}
-\problempart{(5)}
-
+Markets are incomplete here; only the goods in even periods can be traded. At each even period, group 1 consumers receive endowment 1 aand group 2 consumers receive endowment 3. Since the consumption in odd periods is fixed to the endowment (since the goods cannot be traded), the utility maximization is equivalent to each consumer maximizing utility with discount factor
+\[ \sum_{t=0}^\infty \beta^{2t} c^i_{2t} \]
+subject to
+\[ \sum_{t=0}^\infty p_{2t} c^i_{2t} \le \sum_{t=0}^\infty p_{2t} w^i_{2t}\]
+\[ c^1_{2t} + c^2_{2t} \le w^1_{2t} + w^2_{2t} \]
+But the endowment across only even periods is constant! Hence, the Arrow-Debreu equilibrium doesn't result in any trading, so the equilibrium is simply that \textbf{each consumer consumes their own endowment}, and prices in the even periods given by $p_{2t} = p\beta^{2t}$.
 \problem{3}
 \problempart{(1)}
+Now, the first order conditions are:
+\[ \beta^t u_i'(c^i_t) = \lambda^i p_t \]
+Fixing $p_0 = p$, we have
+\[  \frac{u_i'(c^i_0)}{p} = \lambda^i \]
+\[ \beta^t u_i'(c^i_t) = \frac{p_t}{p} u_i'(c^i_0) \]
+\[ u_i'(c^i_t) = \frac{p_t}{p\beta^t } u_i'(c^i_0) \]
+\[ c^i_t = u_i'^{(-1)} \left( \frac{p_t}{p\beta^t } u_i'(c^i_0) \right) \]
+It's hard to say much about the allocation without more information on the $u_i$ functions. Since we also cannot really compute $p_t$, it is somewhat unclear how the equilibrium allocation relies on the endowments, since the endowments can affect the equilibrium prices.
+
+\textbf{Special case:} if the $u_i'$ are homogeneous of degree $-k$ (since decreasing), then we can say
+\[ c^i_t = \left(\frac{p\beta^t}{p_t} \right)^{1/k} c^i_0 \]
+\[ p\beta^t\left(\frac{\sum_{i=1}^N w^i_0}{\sum_{i=1}^N w^i_t}\right)^k = p_t \]
+\[ c^i_t = \left(\frac{\sum_{i=1}^N w^i_t}{\sum_{i=1}^N w^i_0}\right) c^i_0 \]
+By budget constraint:
+\[ \sum_{t=0}^\infty p\beta^t\left(\frac{\sum_{i=1}^N w^i_0}{\sum_{i=1}^N w^i_t}\right)^k w^i_t = \sum_{t=0}^\infty p\beta^t\left(\frac{\sum_{i=1}^N w^i_0}{\sum_{i=1}^N w^i_t}\right)^k \left(\frac{\sum_{i=1}^N w^i_t}{\sum_{i=1}^N w^i_0}\right) c^i_0  \]
+\[ \left( \sum_{i=1}^N w^i_0\right) \sum_{t=0}^\infty \frac{\beta^tw^i_t}{\left(\sum_{i=1}^N w^i_t\right)^k}  = c^i_0 \sum_{t=0}^\infty \frac{\beta^t}{\left(\sum_{i=1}^N w^i_t\right)^{k-1}}   \]
+\[ \left( \sum_{i=1}^N w^i_0\right) \frac{\sum_{t=0}^\infty \frac{\beta^tw^i_t}{\left(\sum_{i=1}^N w^i_t\right)^k}}{\sum_{t=0}^\infty \frac{\beta^t}{\left(\sum_{i=1}^N w^i_t\right)^{k-1}} }  = c^i_0   \]
+In this very special case, we see that consumption is somewhat smoothed across time; the ratio of a consumer's consumption at time $t$ is proportional to the size of the total endowment of a good at that time $t$.
+
+(As a speculation, intuitively I would like to be able to say that since $u_i$ is concave, the consumers are risk averse, so I would expect some kind of insurance across periods?)
 \problempart{(2)}
+The First Welfare Theorem will hold if $u'_i(x) > 0$; some weird results can occur if $u_i$ can be decreasing.
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
