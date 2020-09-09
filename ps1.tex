@@ -37,16 +37,18 @@
 
 \maketitle
 	% tells latex to follow your header (e.g., title, author) commands.
-Note: I use bold symbols to denote vectors and nonbolded symbols to denote scalars.
+\textbf{Note:} I use bold symbols to denote vectors and nonbolded symbols to denote scalars. I primarily use vector notation to shorthand some of the sums, since many of the sums are dot products.
 
 \problem{1}
 
-\problempart{(1)} Markets are only open at period 0, and goods for all periods of time are traded. Consumers may trade with anyone from their own consumer group or the other consumer group. Given price vector $\vector{p} = \{p_0, p_1, p_2, ... \}$ agents of type $i$ seek to maximize their own utility:
+\problempart{(1)} Markets are only open at period 0, and goods for all periods of time are traded. Consumers may trade with anyone from their own consumer group or the other consumer group.
+
+At the Arrow-Debreu equilibrium price vector $\vector{p} = \{p_0, p_1, p_2, ... \}$ and allocation, agents of type $i$ maximize their own utility:
 \[ U(\vector{c^i}) = \sum_{t=0}^\infty \beta^t \log c^i_t \]
  subject to their budget constraint:
 \[ \vector{p}\cdot \vector{c^i} \le \vector{p}\cdot \vector{w^i} \]
 where $\vector{c^i}$ denotes the vector of allocations given to type $i$ across time, and $\vector{w^i}$ denotes the vector of endowments given to type $i$ across times. \\\\
-An Arrow-Debreu equilibrium must additionally satisfy allocation feasibility. That is, for all $t \ge 0$:
+An Arrow-Debreu equilibrium must satisfy allocation feasibility. That is, for all $t \ge 0$:
 \[ \sum_{i=1}^2 c^i_t \le \sum_{i=1}^2 w^i_t \]
 We also require allocations to be nonnegative:
 \[ c^i_t \ge 0 \]
@@ -72,30 +74,87 @@ we can simplify this to
 \[ c^i_t = \frac{4\alpha_i}{\alpha_1 + \alpha_2}\]
 
 \problempart{(3)}
-We could compute the demand manually using the optimization problem and FOCs, but we note that this utility is of the Cobb-Douglas form, and hence each consumer spends a proportion of their wealth on the good according to the Cobb-Douglas coefficient. We first define
-\[ e_1(\vector{p}) = p_0 + 3p_1 + p_2 + 3p_3 + ...  \]
-\[ e_2(\vector{p}) = 3p_0 + p_1 + 3p_2 + p_3 + ...  \]
-For convenience, we note
-\[ 1 + \beta + \beta^2 + ... = \frac{1}{1-\beta}  \]
-Then the demand of consumer of type $i$ is given by
-\[ [x^i(\vector{p})]_t = \frac{\beta^t(1-\beta)e_i(\vector{p})}{p_t} \]
-Setting excess demand for goods at each period to 0, we get
-\[ \frac{\beta^t(1-\beta)e_1(\vector{p})}{p_t} + \frac{\beta^t(1-\beta)e_2(\vector{p})}{p_t} = 4 \]
-Using the fact that $e_1(\vector{p}) + e_2(\vector{p}) = 4p_0 + 4p_1 + 4p_2 + ...$, we have
-\[ \beta^t(1-\beta)\sum_{t'=0}^\infty p_{t'} = p_t \]
-Fixing $\tilde{p_0} = p$, we have that the equilibrium price vector is given by
-\[\vector{\tilde{p}} = \{ \beta^t p \}_{t=0}^\infty \]
-Then we get
-\[ e_1(\vector{\tilde{p}}) = \frac{p}{1-\beta} + \frac{2\beta p}{1-\beta^2} = \frac{p + 3\beta p}{1-\beta^2} \]
-\[ e_2(\vector{\tilde{p}}) = \frac{p}{1-\beta} + \frac{2p}{1-\beta^2} = \frac{3p + \beta p}{1-\beta^2} \]
+We note that $w^1_t + w^2_t = 4$ always in this example. From the lecture, we know that after we normalize prices $p_0 = p$, we have that the prices are given by:
+\[ p_t = p\beta^t \frac{w^1_0 + w^2_0}{w^1_t + w^2_t} = p\beta^t \]
+Using the fact that the budget constraint binds, we have
+\[ c^i_t = p(1-\beta)\sum_{k=0}^\infty \beta^k w^i_k \]
+
+We compute
+\[ \phi_1 = \sum_{k=0}^\infty \beta^k w^1_k = \frac{1}{1-\beta} + \frac{2\beta }{1-\beta^2} = \frac{1 + 3\beta }{1-\beta^2} \]
+\[ \phi_2 = \sum_{k=0}^\infty \beta^k w^2_k = \frac{1}{1-\beta} + \frac{2}{1-\beta^2} = \frac{3 + \beta }{1-\beta^2} \]
 Together, the equilibrium is then:
 \[ \left\{\vector{\tilde{c^1}} = \left\{\frac{1+3\beta }{1+\beta} \right\}_{t=0}^\infty, \vector{\tilde{c^2}} = \left\{\frac{3+\beta }{1+\beta} \right\}_{t=0}^\infty, \vector{\tilde{p}} =\{ \beta^t p \}_{t=0}^\infty \right\} \]
 To show that this is Pareto efficient, it suffices to show that this is a solution to the social planner problem for some $(\alpha_1, \alpha_2)$ (since the solution to the social planner problem is Pareto efficient). Using the previous problem part, we easily see that choosing $(\alpha_1, \alpha_2) = (1+3\beta, 3+\beta)$ suffices.
 \problempart{(4)}
+In a sequential market, markets are open at each time $t$. At that time, the agents can trade the period $t$ good with each other, but they can also trade credit for the period $t+1$ good (trading a unit of the period $t$ good for $(1+r_{t+1})$ of the period $t+1$ good). All agents can trade with each other, and we normalize the price of the period $t$ good to 1 at each period. Let $c^i_t, s^i_{t+1}$ denote the consumption and savings at time $t$. To make our notation easier, let us set $s^i_0 = 0$, $r_0 = 0$. At equilibrium, we then have an allocation $(\vector{c}^i, \vector{s}^i)_{i=1,2}$, and a vector of interest rates $\vector{r}$. The equilibrium must satisfy agent maximization: that is,
+\[ \max \sum_{t=0}^\infty \beta^t u(c^i_t) \]
+subject to:
+\[ c^i_t + s^i_{t+1} \le w^i_t + (1+r_{t})s^i_t \]
+\[ c^i_t \ge 0, \ s^i_t \ge -A^i \]
+where $A^i$ is a borrowing limit. The equilibrium must also be feasible and budget balanced:
+\[ c^1_t + c^2_t \le w^1_t + w^2_t \]
+\[ s^1_t + s^2_t = 0 \]
+Writing out the Lagrangian and FOCs, we find that
+\[ c^i_t = \beta^t c^i_0 \prod_{k=0}^t (1+ r_k)  \]
+Using the market clearing condition, we find that
+\[\beta^t c^1_0 \prod_{k=0}^t (1+ r_k) + \beta^t c^2_0 \prod_{k=0}^t (1+ r_k) = 4 \]
+\[ \prod_{k=0}^t (1+ r_k) = \frac{1}{\beta^t} \]
+\[ 1 + r_{t+1} = \frac{1}{\beta} \]
+\[ r_{t+1} = \frac{1-\beta}{\beta} \]
+Therefore, we get
+\[ c^i_t = c^i_0 \]
+Now, since the budget constraints bind, we have
+\[ c^i_t + s^i_{t+1} = w^i_t + \frac{1}{\beta}s^i_t \]
+\[ w^i_t - c^i_t = s^i_{t+1} - \frac{1}{\beta}s^i_t \]
+\[ \beta^{t+1} (w^i_t - c^i_t) = \beta^{t+1}s^i_{t+1} - \beta^t s^i_{t} \]
+Summing both sides from $t = 0$ to $\infty$, we get
+\[ \sum_{t=0}^\infty \beta^{t+1} (w^i_t - c^i_t) = \sum_{t=0}^\infty \beta^{t+1}s^i_{t+1} - \beta^t s^i_{t} = \sum_{t=1}^\infty \beta^{t}s^i_{t} -  \sum_{t=0}^\infty \beta^{t}s^i_{t} \]
+Note that the RHS telescopes, and since we set $s^i_0 = 0$, we get
+\[ 0 = \sum_{t=0}^\infty \beta^{t+1} (w^i_t - c^i_t) \]
+Dividing out a $\beta$ and using the earlier derived fact that $c^i_0 = c^i_t = c^i$, we get
+\[ 0 = \sum_{t=0}^\infty \beta^{t} (w^i_t - c^i) \]
+\[ c^i = (1-\beta) \sum_{t=0}^\infty \beta^t w^i_t = (1-\beta)\phi_i \]
+Hence we once again find:
+\[ c^1 = \frac{1+3\beta }{1+\beta} \]
+\[ c^2 = \frac{3+\beta }{1+\beta} \]
+Solving for $s^i$ using the budget constraint, we find
+\[ s^i_{t+1} = w^i_t - c^i_t + \frac{1}{\beta} s^i_{t} \]
+Using the periodic nature of the endowment, we get
+\[ (s^1_{2i+1}, s^2_{2i+1}) = \frac{-2\beta}{1+\beta}, \frac{2\beta}{1+\beta} \]
+\[ (s^1_{2i}, s^2_{2i}) = 0 \]
+We can unify these:
+\[ (s^1_{t}, s^2_{t}) = \frac{-\beta(1 - (-1)^{t})}{1+\beta}, \frac{\beta(1 - (-1)^t)}{1+\beta} \]
+Note that this is 0 for even $t$, and nonzero for odd $t$.
+All together, the equilibrium is given by:
+\[ \vector{c^1} = \left \{ \frac{1+3\beta }{1+\beta}  \right\}_{t=0}^\infty  \]
+\[ \vector{c^2} = \left \{ \frac{3+\beta }{1+\beta}  \right\}_{t=0}^\infty  \]
+\[ \vector{s^1} = \left \{ \frac{-\beta(1 - (-1)^{t})}{1+\beta}   \right\}_{t=0}^\infty  \]
+\[ \vector{s^2} = \left \{ \frac{\beta(1 - (-1)^{t})}{1+\beta}   \right\}_{t=0}^\infty  \]
+\[ \vector{r} = \left(0, \frac{1-\beta}{\beta},  \frac{1-\beta}{\beta}, \frac{1-\beta}{\beta}, \frac{1-\beta}{\beta}... \right)  \]
+Note that the equilibrium allocation is exactly the same as the Arrow-Debreu equilibrium, and further, the interest rates at sequential equilibrium and the prices at Arrow-Debreu equilibrium satisfy:
+\[ p_t \prod_{k=0}^t (1 + r_k) = 1 \]
 \problempart{(5)}
+An Arrow-Debreu equilibrium consists of an allocation $(\vector{c^1}, \vector{c^2})$, prices $\vector{p}$, and transfers $\tau^1, \tau^2$, such that the allocation is feasible ($c^1_t + c^2_t \le w^1_t + w^2_t$), budget-balanced ($\tau^1 + \tau^2 = 0$), and the allocation maximizes utility for each user:
+\[ \max \sum_{t=0}^\infty \beta^t u^i(c^i_t) \]
+subject to
+\[ \vector{p}\cdot \vector{c^i} \le \vector{p}\cdot \vector{w^i} + \tau^i \]
+for each $i$, and nonnegative $c^i_t$.
 
+Note that in an Arrow-Debreu equilibrium with transfers, the FOCs are exactly the same. Therefore, from the FOCs and the market clearing condition, and normalizing $p_0 = p$, we calculate the prices again as:
+\[ p_t = p\beta^t \frac{w^1_0 + w^2_0}{w^1_t + w^2_t} = p\beta^t \]
+Using the fact that the budget constraint is binding, we have:
+\[ p c^i_0 = (1-\beta)\left(\sum_{k=0}^\infty p \beta^k w_k + \tau^i \right) \]
+\[ c^i_0 = (1-\beta)\left(\sum_{k=0}^\infty \beta^k w_k \right) +\frac{1-\beta}{p} \tau^i  \]
+Now, from what we computed in part 3, we get
+\[ c^1_t = \frac{1 + 3\beta}{1 + \beta} +\frac{1-\beta}{p} \tau^1 \]
+\[ c^2_t = \frac{3 + \beta}{1 + \beta} +\frac{1-\beta}{p} \tau^2 \]
+To implement $c^1_t =  c^2_t = 2$, we then have:
+\[ \tau^1 = \frac{p}{1-\beta}\left(2 - \frac{1+3\beta}{1+\beta} \right) = \frac{p}{1+\beta} \]
+\[ \tau^2 = \frac{p}{1-\beta}\left(2 - \frac{3+\beta}{1+\beta} \right) = -\frac{p}{1+\beta} \]
 \problem{2}
 \problempart{(1)}
+The demand of consumer of type $i$ is given by
+\[ [x^i(\vector{p})]_t = \frac{\beta^t(1-\beta)(\vector{w^1} \cdot \vector{p})}{p_t} \]
 \problempart{(2)}
 \problempart{(3)}
 \problempart{(4)}
