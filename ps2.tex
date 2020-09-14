@@ -83,8 +83,8 @@ subject to
 \[ c_t + k_{t+1} - (1-\delta) k_t = F(k_t^f, l_t^f) \]
 \end{itemize}
 In terms of relating the interest rates, we have the no-arbitrage condition, that
-\[ 1-\delta +r^k_{t+1} = 1+ r^b_t\]
-\[ r^k_{t+1} - \delta = r^b_t\]
+\[ 1-\delta +r^k_{t+1} = 1+ r^b_{t+1}\]
+\[ r^k_{t+1} - \delta = r^b_{t+1}\]
 Intuitively, this makes sense; if a consumer can achieve higher returns by investing in bonds rather than in capital, they would invest no capital, and no production could occur. Conversely, if a consumer can achieve higher returns in capital rather than bonds, the consumer would then choose to always borrow using bonds to buy capital, and will guarantee a profit, which violates the equilibrium assumption of $b_t = 0$.
 \problempart{(3)} In this case, an allocation is governed by $\{ k_t^f, c_t, l_t^f \}$, and our feasibility constraints are:
 \[ k_0^f \le \bar{k}_0 \]
@@ -134,10 +134,10 @@ Then we can take:
 and
 \[ \Gamma(k_t) = [0, \theta k_t^\alpha + (1-\delta)k_t]\]
 The Lagrangian is given by
-\[ \beta^t \frac{c_t^{1-\sigma} -1}{1-\sigma} - \lambda_t (c_t + k_{t+1} -(1-\delta)k_t - \theta k_t^\alpha) \]
+\[ \sum_{t=0}^\infty \beta^t F(k_t, k_{t+1}) - \lambda_t k_t \]
 The FOCs are:
-\[ \frac{\beta^t}{c_t^\sigma} = \lambda_t \]
-\[ \lambda_{t} = \lambda_{t+1}((1-\delta) + \alpha \theta k_t^{\alpha - 1})  \]
+\[ \beta^{t+1} F_1(k_{t+1}, k_{t+2}) + \beta^t F_2(k_{t}, k_{t+1})  = \lambda_{t+1} \]
+\[ \beta F_1(k_{t+1}, k_{t+2}) + F_2(k_{t}, k_{t+1})  = 0 \]
 The Euler condition is
 \[ \frac{1}{(\theta k_t^\alpha + (1-\delta)k_t - k_{t+1})^\sigma} = \frac{\beta(1-\delta + \alpha \theta k_t^{\alpha - 1})}{(\theta k_{t+1}^\alpha + (1-\delta)k_{t+1} - k_{t+2})^\sigma} \]
 \[ \theta k_{t+1}^\alpha + (1-\delta)k_{t+1} - k_{t+2} = (\theta k_t^\alpha + (1-\delta)k_t - k_{t+1}) \beta^{1/\sigma}(1-\delta + \alpha \theta k_t^{\alpha - 1})^{1/\sigma} \]
@@ -191,6 +191,41 @@ Consumption is then
 
 \problempart{(2)}
 \problempart{(3)}
-\problempart{(4)}
+We know that since the production function is Cobb-Douglas, the labor income share is $(1-\alpha)$, so we can solve for $\alpha = 0.36$. The capital to output ratio is then implies
+\[ k = 3 \]
+So
+\[ \theta (3)^\alpha = 1 \]
+\[ \theta = 3^{-0.36} \approx 0.6733 \]
+The consumption to output ratio is 0.8, so we have
+\[ 0.8 + \delta k = 1 \]
+\[ \delta = 0.2 / 3 \approx 0.0667\]
+Finally, we need to tie down $\beta$. From the Euler condition,
+\[ 1 = \beta (1 - \delta + \alpha/k) \]
+\[ 1 = \beta (1 - \delta + 0.12) \]
+\[ \beta \approx 0.9494 \]
+All together the parameters are
+\[ \alpha = 0.36 \]
+\[ \theta = 0.6733 \]
+\[ \beta = 0.9494 \]
+\[ \delta = 0.0667\]
+\problempart{(4)} The figures for $k_0 = 0.5k_{ss}$ are in figure 1, and for $k_0 = 1.5k_{ss}$ in figure 2.
+\begin{figure}
+\includegraphics[scale=0.2]{ps2q3_4k1}
+\includegraphics[scale=0.2]{ps2q3_4r_k1}
+\includegraphics[scale=0.2]{ps2q3_4r_b1}
+\includegraphics[scale=0.2]{ps2q3_4w1}
+\caption{
+Figure for $k_0 = 0.5 k_{ss}$. $k$ in the top left, $r_k$ in the top right, $r_b$ in the bottom left, $w$ in the bottom right.
+}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.2]{ps2q3_4k2}
+\includegraphics[scale=0.2]{ps2q3_4r_k2}
+\includegraphics[scale=0.2]{ps2q3_4r_b2}
+\includegraphics[scale=0.2]{ps2q3_4w2}
+\caption{
+Figure for $k_0 = 0.5 k_{ss}$. $k$ in the top left, $r_k$ in the top right, $r_b$ in the bottom left, $w$ in the bottom right.
+}
+\end{figure}
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
