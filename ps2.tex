@@ -28,7 +28,7 @@
 	% line of code telling latex that your document is beginning
 
 
-\title{Problem Set 1}
+\title{Problem Set 2}
 
 \author{Nicholas Wu}
 
@@ -57,14 +57,17 @@ and so on
 \[ b_{t+1} = c^*_t-w_t  + b_t(1 + r_t^b) \]
 The form of $b_t$ is then
 \[ b_t = \sum_{k=1}^{t} ( c^*_{k-1}-w_{k-1} ) \prod_{i={k}}^{t-1} (1+r_{i}^b) \]
-The consumer is borrowing infinitely against the future, so the borrowing limit prevents these outcomes. Using the FOCs derived in lecture, the Euler condition is given by
+The consumer is borrowing infinitely against the future, so the borrowing limit prevents these outcomes. Using the FOCs derived in lecture, the Euler conditions are given by
 \[ \frac{1}{c_t} = \beta (1-\delta + r^k_{t+1})\frac{1}{c_{t+1}} \]
 \[ c_{t+1} = c_t \beta (1-\delta + r^k_{t+1}) \]
-and the transversality condition is given by
+\[ \frac{1}{c_t} = \beta (1 + r^b_{t+1})\frac{1}{c_{t+1}} \]
+\[ c_{t+1} = c_t \beta (1 + r^b_{t+1}) \]
+and the transversality conditions are given by
 \[ \lim_{t \to \infty} \beta^t\frac{(1 + r^b_t) b_t}{c_t} = 0 \]
+\[ \lim_{t \to \infty} \beta^t\frac{(1 - \delta + r^k_t) k_t}{c_t} = 0 \]
 
 \problempart{(2)}
-The sequential equilibrium consists of initial savings and capital $\bar{b}_0$, $\bar{k}_0$, a consumer allocation $\{ (c_t, k_t, b_t) \}_{t=0}^\infty$, a producer allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$, and prices/wages $\{ w_t, r_t^b, r_t^k \}_{t=0}^\infty$, that satisfy the following conditions:
+The sequential equilibrium given initial savings and capital $\bar{b}_0$, $\bar{k}_0$ consists of a consumer allocation $\{ (c_t, k_t, b_t) \}_{t=0}^\infty$, a producer allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$, and prices/wages $\{ w_t, r_t^b, r_t^k \}_{t=0}^\infty$, that satisfy the following conditions:
 \begin{itemize}
 \item The consumer alllocation solves the consumer maximization problem for the given $\bar{b}_0$, $\bar{k}_0$, $\{ w_t, r_t^b, r_t^k \}_{t=0}^\infty$. We stated the problem in the previous part, but here it is again:
 \[ \max \sum_{t=0}^\infty \beta^t \log c_t\]
@@ -125,6 +128,108 @@ subject to
 \[ k_0 = \bar{k}_0 \]
 \end{itemize}
 \problempart{(6)}
+Intuitively, since the FWT gives that these problems are equivalent to the social planner problem, we know the allocations are all the same across the different equilibria. Specifically:
+\begin{itemize}
+\item $(2) \to (4)$: We first see that to preserve firm optimization behavior, we set wages equal between the two problems. Then we need to nail down the prices. The firm's objective in $(2)$ is:
+\[ F(k_t^f, l_t^f) - r_t^k k_t^f - w_tl_t^f \]
+Note that this objective can be multiplied by a scalar and still preserve the optimization behavior. Now, consider the firm's objective in $(4)$:
+\[-p_0 p^k \bar{k}_0 + \sum_{t=0}^\infty p_t F(k_t^f, l_t^f) - p_tw_tl_t^f - p_tk^f_{t+1} + p_t(1-\delta)k^f_t \]
+Isolating the terms, we see for $t \ge 1$ the terms are:
+\[p_t F(k_t^f, l_t^f) - p_tw_tl_t^f - p_{t-1}k^f_{t} + p_t(1-\delta)k^f_t\]
+We want this to be equivalent to the objective in $(2)$, so we let this equal the objective of $(2)$ multiplied by the scalar $p_t$:
+\[ p_t(F(k_t^f, l_t^f) - r_t^k k_t^f - w_tl_t^f) = p_t F(k_t^f, l_t^f) - p_tw_tl_t^f - p_{t-1}k^f_{t} + p_t(1-\delta)k^f_t \]
+\[ -p_tr_t^kk_t^f = - p_{t-1}k_t^f + p_t(1-\delta)k^f_t \]
+\[ r_t^k = \frac{p_{t-1}}{p_t} - (1-\delta) \]
+\[ p_t = \frac{p_{t-1}}{1 - \delta + r_t^k} \]
+So we get the prices can be found by normalizing $p_0$, and using this identity:
+\[ p_0 = p^* \]
+\[ p_t = p^* \prod_{t=0}^{t-1} \frac{1}{1-\delta + r_{t+1}^k}\]
+For the initial capital price, we take the same approach as for finding prices, but we investigate the terms of the corresponding firm objectives with $t=0$.
+\[ p_0(F(k_0^f, l_0^f) - r_0^k k_0^f - w_0l_0^f) = p_0 F(k_0^f, l_0^f) - p_0w_0l_0^f - p_0 p^k k^f_{0} + p_0(1-\delta)k^f_0 \]
+\[ - r_0^k  =  - p^k + (1-\delta) \]
+\[ p^k = r_0^k + (1-\delta) \]
+So we get the following result:
+
+\textbf{Theorem}: Suppose we have a consumer allocation $\{ (c_t, k_t, b_t) \}_{t=0}^\infty$, a producer allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$, and wages/rates $\{ w_t, r_t^b, r_t^k \}_{t=0}^\infty$ that is an equilibrium for the market given in $(2)$. Then the same allocation $\{ c_t \}_{t=0}^\infty$  with $\{ k_t^f, l_t^f \}_{t=0}^\infty$ is supported as an equilibrium in $(4)$ with prices given by:
+\begin{itemize}
+\item Wage rate: $w'_t = w_t$
+\item Prices:
+\[ p_0 = p^* \]
+\[ p_t = p^* \prod_{t=1}^{t} \frac{1}{1-\delta + r_{t}^k}\]
+\item Initial capital price:
+\[ p^k = r_0^k + (1-\delta) \]
+\end{itemize}
+\item $(2) \to (5)$: We note that $(5)$ is the standard Arrow-Debreu counterpart of the sequential equilibrium problem in $(2)$. Thus, we have the following:
+
+\textbf{Theorem}: Suppose we have a consumer allocation $\{ (c_t, k_t, b_t) \}_{t=0}^\infty$, a producer allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$, and wages/rates $\{ w_t, r_t^b, r_t^k \}_{t=0}^\infty$ that is an equilibrium for the market given in $(2)$. Then the same allocation $\{ c_t, k_t \}_{t=0}^\infty$  with $\{ k_t^f, l_t^f \}_{t=0}^\infty$ is supported as an equilibrium in $(5)$ with prices given by:
+\begin{itemize}
+\item Wage rate: $w'_t = w_t$
+\item Capital rental rate: $r'_t = r^k_t$
+\item Prices:
+\[ p_0 = p^* \]
+\[ p_t = p^* \prod_{t=1}^{t} \frac{1}{1-\delta + r_{t}^k}\]
+\end{itemize}
+\item $(4) \to (2)$: We have the same equivalences as our theorem from $(2) \to (4)$. That is, for $t \ge 1$, we have
+\[ r_t^k = \frac{p_{t-1}}{p_t} - (1-\delta) \]
+And for $t = 0$:
+\[ p^k = r_0^k + (1-\delta) \]
+\[ r_0^k = p^k - (1-\delta)\]
+
+\textbf{Theorem}: Suppose we have an equilibrium for $(4)$ with alllocation $\{ k_t^f, c_t, l_t^f \}_{t=0}^\infty$, wages/good prices $\{ w_t, p_t \}$, and an initial price of capital $p^k$. Then the consumer allocation $\{ c_t, k_t = k_t^f, b_t = 0 \}_{t=0}^\infty$ and producer allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$ is supported as a sequential equilibrium in $(2)$ with prices:
+\begin{itemize}
+\item Wage rate: $w'_t = w_t$
+\item Capital rental rate:
+\[ r_0^k = p^k - (1-\delta)\]
+and for $t \ge 1$:
+\[ r_t^k = \frac{p_{t-1}}{p_t} - (1-\delta) \]
+\item Bond rental rate: $r^b_t = r^k_t - \delta$
+\end{itemize}
+\item $(4) \to (5)$: We match the firm problems in these two equilibriums in order to support the same allocation. The firm's objective to maximize in $(5)$ is
+\[ p_t F(k_t^f, l_t^f) - p_t w_t l_t^f - p_t r^k_t k_t^f \]
+In $(4)$ the firm's objective is
+\[ -p_0 p^k \bar{k}_0 + \sum_{t=0}^\infty p_t F(k_t^f, l_t^f) - p_tw_tl_t^f - p_tk^f_{t+1} + p_t(1-\delta)k^f_t  \]
+Isolating the terms with $k_t^f, l_t^f$, we get for $t \ge 1$
+\[ p_t F(k_t^f, l_t^f) - p_tw_tl_t^f - p_{t-1}k^f_{t} + p_t(1-\delta)k^f_t \]
+and for $t=0$,
+\[ p_0 F(k_0^f, l_0^f) - p_0w_0l_0^f - p_0 p^k \bar{k}_0 + p_0(1-\delta)k^f_0 \]
+Setting this equal to the incentive constraint in $(5)$, we get
+\[ p_t F(k_t^f, l_t^f) - p_t w_t l_t^f - p_t r^k_t k_t^f = p_t F(k_t^f, l_t^f) - p_tw_tl_t^f - p_{t-1}k^f_{t} + p_t(1-\delta)k^f_t \]
+\[ - p_t r^k_t = - p_{t-1}+ p_t(1-\delta) \]
+\[ r^k_t = \frac{p_{t-1}}{p_t} - (1-\delta) \]
+for $t \ge 1$. At $t=0$, we have
+\[ p_0 F(k_0^f, l_0^f) - p_0 w_0 l_0^f - p_0 r^k_0 k_0^f = p_0 F(k_0^f, l_0^f) - p_0w_0l_0^f - p_0 p^k \bar{k}_0 + p_0(1-\delta)k^f_0 \]
+\[ r^k_0  = p^k  - (1-\delta) \]
+So we have the result:
+
+\textbf{Theorem}: Suppose we have an equilibrium for $(4)$ with alllocation $\{ k_t^f, c_t, l_t^f \}_{t=0}^\infty$, wages/good prices $\{ w_t, p_t \}$, and an initial price of capital $p^k$. Then the same allocation $\{ c_t, k_t = k_t^f \}_{t=0}^\infty$  with $\{ k_t^f, l_t^f \}_{t=0}^\infty$ is supported as an equilibrium in $(5)$ with prices given by:
+\begin{itemize}
+\item Wage rate: $w'_t = w_t$
+\item Prices: $p'_t = p_t$
+\item Capital rental rate:
+\[ r^k_0  = p^k  - (1-\delta) \]
+For $t \ge 1$,
+\[ r^k_t = \frac{p_{t-1}}{p_t} - (1-\delta) \]
+\end{itemize}
+\item $(5) \to (2)$: This is the conventional Arrow-Debreu / sequential equilibrium equivalence. So we have:
+
+\textbf{Theorem}: Suppose we haave an equilibrium for $(5)$ with allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$, consumer allocation $\{ c_t, k_t \}_{t=0}^\infty$, prices $\{ p_t \}_{t=0}^\infty$, wages $\{ w_t \}_{t=0}^\infty$, and capital rental rate $\{ r_t \}_{t=0}^\infty$. Then the consumer allocation $\{ c_t, k_t, b_t = 0 \}_{t=0}^\infty$ and producer allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$ is supported as a sequential equilibrium in $(2)$ with prices:
+\begin{itemize}
+\item Wage rate: $w'_t = w_t$
+\item Capital rental rate: $r^k_t = r_t$
+\item Bond rental rate: $r^b_t = r^k_t - \delta$
+\end{itemize}
+\item $(5) \to (4)$: As in the direction $(4) \to (5)$, we match the firm's problem. So we can match the same wages and prices, and we need to find the initial capital price:
+\[ r^k_0  = p^k  - (1-\delta) \]
+\[ p^k = r^k_0 + (1-\delta) \]
+
+Suppose we haave an equilibrium for $(5)$ with allocation $\{ k_t^f, l_t^f \}_{t=0}^\infty$, consumer allocation $\{ c_t, k_t \}_{t=0}^\infty$, prices $\{ p_t \}_{t=0}^\infty$, wages $\{ w_t \}_{t=0}^\infty$, and rental rate $\{ r_t \}_{t=0}^\infty$. Then the same allocation $\{ c_t \}_{t=0}^\infty$  with $\{ k_t^f, l_t^f \}_{t=0}^\infty$ is supported as an equilibrium in $(4)$ with prices given by:
+\begin{itemize}
+\item Wage rate: $w'_t = w_t$
+\item Prices: $p'_t = p_t$
+\item Initial capital price:
+\[ p^k = r^k_0 + (1-\delta) \]
+\end{itemize}
+\end{itemize}
 \problem{2}
 \problempart{(1)}
 Using the constraint binding, we get
@@ -168,7 +273,7 @@ But by transversality condition, the limit on the RHS is 0, so $\Delta \ge 0$. H
 
 \problempart{(3)} If we examine the original social planner problem, we see that the budget constraint must bind: if not, we can allocate more $c_t$ for some period, and this gives a strictly larger value for the objective. Hence, since the constraint must bind, given an optimal sequence $\{ k_t \}$ solving our problem that we phrased in part (1) of this question, we can easily backsolve for $c_t$:
 \[ c_t = \theta k_t^\alpha + (1-\delta)k_t - k_{t+1} \]
-Hence, we can derive the second-order equation from the Euler condition:
+Hence, we can derive the second-order equation from the FOCs:
 \[ \frac{1}{(\theta k_t^\alpha + (1-\delta)k_t - k_{t+1})^\sigma} = \frac{\beta(1-\delta + \alpha \theta k_t^{\alpha - 1})}{(\theta k_{t+1}^\alpha + (1-\delta)k_{t+1} - k_{t+2})^\sigma} \]
 \[ \frac{1}{(\theta k_t^\alpha + (1-\delta)k_t - k_{t+1})^\sigma} - \frac{\beta(1-\delta + \alpha \theta k_t^{\alpha - 1})}{(\theta k_{t+1}^\alpha + (1-\delta)k_{t+1} - k_{t+2})^\sigma} = 0 \]
 Then taking:
@@ -176,6 +281,27 @@ Then taking:
 gives the desired condition.
 
 \problempart{(4)}
+Note that by the equivalence theorems we argued in part (6) of question 1, the sequences of capital and consumption are the same across the different equilibria. We know from the first part of question (1) that the sequence of consumption follows the following Euler and transversality conditions:
+\[ c_{t+1}^\sigma = c_t^\sigma \beta (1-\delta + r^k_{t}) \]
+\[ \frac{\beta(1-\delta + r^k_{t})}{c_{t+1}^\sigma} = \frac{1}{c_t^\sigma} \]
+\[ \frac{1}{c_t^\sigma} - \frac{\beta(1-\delta + r^k_{t})}{c_{t+1}^\sigma} = 0 \]\
+Using market-clearing, we get:
+\[ c_t = F(k_t, l_t) - k_{t+1} + (1-\delta)k_t \]
+\[ c_t = \theta k_t^\alpha l_t^{1-\alpha} - k_{t+1} + (1-\delta)k_t \]
+Plugging in, and using $l_t = 1$, the Euler condition becomes
+\[ \frac{1}{(\theta k_t^\alpha - k_{t+1} + (1-\delta)k_t)^\sigma} - \frac{\beta(1-\delta + r^k_{t+1})}{(\theta k_{t+1}^\alpha - k_{t+2} + (1-\delta)k_{t+1})^\sigma} = 0 \]
+From the firm optimization, we get that
+\[ \theta \alpha k_t^{\alpha - 1} = r^k_t \]
+So the condition becomes
+\[ \frac{1}{(\theta k_t^\alpha - k_{t+1} + (1-\delta)k_t)^\sigma} - \frac{\beta(1-\delta + \theta \alpha k_t^{\alpha - 1})}{(\theta k_{t+1}^\alpha - k_{t+2} + (1-\delta)k_{t+1})^\sigma} = 0 \]
+\[ S(k_t, k_{t+1}, k_{t+2}) = 0 \]
+Hence the Euler condition matches the second-order difference equation for the planner problem.
+
+As for transversality, we know from $(1)$ in question 1 that the transversality condition is given by:
+\[ \lim_{t \to \infty} \beta^t\frac{(1 - \delta + r^k_t) k_t}{c_t} = 0 \]
+\[ \lim_{t \to \infty} \beta^t\frac{(1 - \delta + \theta \alpha k_t^{\alpha - 1}) k_t}{\theta k_t^\alpha l_t^{1-\alpha} - k_{t+1} + (1-\delta)k_t } = 0 \]
+which is the same transversality condition as we found in part (1) of this question. 
+
 \problem{3}
 \problempart{(1)}
 At steady state, $\bar{k}$, we have
@@ -189,7 +315,7 @@ Consumption is then
 \[ \bar{c} = \theta \bar{k}^\alpha - \delta \bar{k}   \]
 \[ = \theta \left(\frac{(1/\beta) - (1-\delta)}{\alpha \theta} \right)^{\alpha/(\alpha - 1)} - \delta \left(\frac{(1/\beta) - (1-\delta)}{\alpha \theta} \right)^{1/(\alpha - 1)} \]
 
-\problempart{(2)}
+\problempart{(2)} See separate file.
 \problempart{(3)}
 We know that since the production function is Cobb-Douglas, the labor income share is $(1-\alpha)$, so we can solve for $\alpha = 0.36$. The capital to output ratio is then implies
 \[ k = 3 \]
