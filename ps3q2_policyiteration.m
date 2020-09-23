@@ -39,20 +39,9 @@ while error > tolerance
         k = k_grid(i);
         c = c_k(i);
         l_k(i) = fsolve(@(l)optimal_labor_function(l,k,c), l_ss, options);
-    end
-    
-    k_prime = theta*(k_grid.^alpha).*(l_k.^(1-alpha)) - c_k;
-    
-    % interpolate c at each value k_prime
-    for i = 1:k_grid_size
+        k_prime(i) = theta*(k^alpha)*(l_k(i)^(1-alpha)) - c;
         interpolated_value = interp1(k_grid, c_k, k_prime(i), 'linear', 'extrap');
         c_interpolated(i) = interpolated_value;
-    end 
-    
-    % resolve for optimal labor at the points of k_prime
-    for i = 1:k_grid_size
-        k = k_prime(i);
-        c = c_interpolated(i);
         l_prime(i) = fsolve(@(l)optimal_labor_function(l,k,c), l_ss, options);
     end
     
