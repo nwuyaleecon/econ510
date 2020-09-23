@@ -257,7 +257,7 @@ Using the fact that we showed $T_{h_{n+1}}w_n = Tw_n$, we have
 \[ Tw_n \le T^N_{h_{n+1}}w_n\]
 for all $N$. But as $N \to \infty$, by contraction mapping theorem, the RHS approaces $w_{n+1}$. Hence we have
 \[ Tw_n \le w_{n+1} \]
-Now, we note that $T^n w_0 \ge T^{n-1} w_{1} \ge ... \ge w_n $. Note that as $n \to \infty$, the LHS approaches $v$, by contraction mapping. Hence, $v \ge w_n$ as $n \to \infty$, so by our monotonicity demonstrations, $v \ge w_n$ for all $n$.
+Now, we note that $T^N w_n \ge T^{N-1} w_{n} \ge ... \ge w_n $. Note that as $N \to \infty$, the LHS approaches $v$, by contraction mapping. Hence, $v \ge w_n$ for all $n$.
 Now, by the monotonicity conditions we showed ($Tw_n \le w_{n+1}$ and $w_n \le Tw_n$),
 \[ || v - w_n|| \le || v- Tw_{n-1} || \]
 \[ \le || v - T^2w_{n-2}  || \]
@@ -355,6 +355,83 @@ Lastly, we solve for the constant term in the value function.
 \[ n = \frac{1}{(1-\beta)(1-\alpha\beta)}\log \left( \frac{\theta (1-\alpha)^{1-\alpha}(\alpha\beta)^{\alpha\beta}(1-\alpha\beta)^{2-2\alpha\beta}}{(2-\alpha-\alpha\beta)^{2-\alpha-\alpha\beta}}\right)  \]
 And so our value function is
 \[ V(k) = \frac{1}{1-\alpha\beta} \log k + \frac{1}{(1-\beta)(1-\alpha\beta)}\log \left( \frac{\theta (1-\alpha)^{1-\alpha}(\alpha\beta)^{\alpha\beta}(1-\alpha\beta)^{2-2\alpha\beta}}{(2-\alpha-\alpha\beta)^{2-\alpha-\alpha\beta}}\right) \]
-\problempart{(4)} See separate file for code. The analytical result in 3 matches the numerical result from running the code.
+\problempart{(4)} See separate file for code. The analytical result in 3 matches the numerical result from running the code, as we can see in the figures. The value function iteration is straightforward; for the policy function, we need to derive the optimization conditions for $l$ given $c(k), k$ and the Euler condition. From our FOCs we have :
+\[\frac{(1-\alpha)\theta k^\alpha l^{-\alpha}}{(\theta k^\alpha l^{1-\alpha} - k')} - \frac{1}{1-l} = 0 \]
+Our optimization condition for $l$ is then:
+\[(1-\alpha)\theta k^\alpha l^{-\alpha}(1-l) = c(k) \]
+For the Euler condition, we derive from the envelope theorem:
+\[ \frac{\partial V}{\partial k} = \frac{\alpha \theta k^{\alpha - 1}l^{1-\alpha}}{c(k)} \]
+And hence the maximization FOC is:
+\[ \frac{-1}{c(k)} + \beta \frac{\alpha \theta (k')^{\alpha - 1}l^{1-\alpha}}{\theta (k')^\alpha l^{1-\alpha} - k'} = 0 \]
+So for our optimization,
+\[ \frac{1}{c^{\text{new}}(k)} =  \frac{\beta\alpha \theta (k')^{\alpha - 1}l^{1-\alpha}}{c^{\text{old}}(k')} \]
+\[ c^{\text{new}}(k) =  \frac{c^{\text{old}}(k')}{\beta\alpha \theta (k')^{\alpha - 1}l^{1-\alpha}} \]
+
+
+\begin{figure}
+\includegraphics[scale=0.4]{ps3q2_valueiteration}
+\caption{Value function iteration. Analytical result in red, numerical result in blue.}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.4]{ps3q2_policyiteration}
+\caption{Policy function iteration. Analytical result in red, numerical result in blue. (These are super close, so they basically coincide)}
+\end{figure}
+
+\pagebreak
+
+\problem{3}
+\problempart{(1)}
+By the Envelope theorem,
+\[ \frac{\partial V}{\partial k_1} = \frac{\theta \alpha k_1^{\alpha-1}l_1^{1-\alpha} + (1-\delta_1)}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} \]
+\[ \frac{\partial V}{\partial k_2} = \frac{\theta \mu k_2^{\mu-1}l_2^{1-\mu} + (1-\delta_2)}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} \]
+Note we can substitute out $c_1$ and $c_2$ in terms of the respective $k_i, l_i, k'_i$, so we only have to worry about the constraint $l_1 + l_2 = 1$. Let $\lambda$ be the Lagrange multiplier on that constraint. Now, we have the maximization FOCs are, by taking partial derivatives with respect to $k'_1, k'_2, l_1, l_2$:
+\[ - \frac{1}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} + \beta \frac{\partial V}{\partial k_1} = 0 \]
+\[ - \frac{1}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} + \beta \frac{\partial V}{\partial k_2} = 0 \]
+\[ \frac{(1-\alpha)\theta k_1^\alpha l_1^{-\alpha}}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma}  - \lambda = 0 \]
+\[  \frac{(1-\mu)\theta k_2^\mu l_2^{-\mu}}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} - \lambda = 0 \]
+We can use the envelope theorem to plug in for the first two, and unify the last two to eliminate $\lambda$. Hence we get
+\[ - \frac{1}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} + \beta \frac{\theta \alpha k_1^{\alpha-1}l_1^{1-\alpha} + (1-\delta_1)}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} = 0 \]
+\[ - \frac{1}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} + \beta \frac{\theta \mu k_2^{\mu-1}l_2^{1-\mu} + (1-\delta_2)}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} = 0 \]
+\[ \frac{(1-\alpha)\theta k_1^\alpha l_1^{-\alpha}}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} = \frac{(1-\mu)\theta k_2^\mu l_2^{-\mu}}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} \]
+Making some simplifications, we get
+\[ \frac{\beta \theta \alpha k_1^{\alpha-1}l_1^{1-\alpha} + \beta (1-\delta_1) - 1}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} = 0 \]
+\[ \frac{\beta \theta \mu k_2^{\mu-1}l_2^{1-\mu} + \beta (1-\delta_2) - 1}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} = 0 \]
+\[ \frac{(1-\alpha) k_1^\alpha l_1^{-\alpha}}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} = \frac{(1-\mu)\theta k_2^\mu l_2^{-\mu}}{( k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} \]
+\problempart{(2)} See separate file.
+\problempart{(3)} To compute the steady-states, we know
+$(k_1^*)' = k_1^*$, $(k_2^*)' = k_2^*$. Then using the given parameter values, our FOCs can be written as
+\[ \frac{\beta \alpha k_1^{\alpha-1}l_1^{1-\alpha} + \beta (1-\delta_1) - 1}{(k_1^\alpha l_1^{1-\alpha} -\delta_1 k_1 )^2} = 0 \]
+\[ \frac{\beta \mu k_2^{\mu-1}l_2^{1-\mu} + \beta (1-\delta_2) - 1}{( k_2^\mu l_2^{1-\mu}  -\delta_2 k_2)^2} = 0 \]
+\[ \frac{(1-\alpha) k_1^\alpha l_1^{-\alpha}}{( k_1^\alpha l_1^{1-\alpha} - \delta_1 k_1 )^2} = \frac{(1-\mu) k_2^\mu l_2^{-\mu}}{( k_2^\mu l_2^{1-\mu} -\delta_2 k_2 )^2} \]
+From the first two, we get
+\[\beta \alpha k_1^{\alpha-1}l_1^{1-\alpha} + \beta (1-\delta_1) = 1\]
+\[ k_1^{\alpha-1}l_1^{1-\alpha}  = \frac{1 - \beta (1-\delta_1)}{\beta \alpha}\]
+\[ \frac{l_1}{k_1}  = \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{1}{1-\alpha}}\]
+\[ l_1  = k_1 \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{1}{1-\alpha}}\]
+\[\beta \mu k_2^{\mu-1}l_2^{1-\mu} + \beta (1-\delta_2) = 1\]
+\[k_2^{\mu-1}l_2^{1-\mu} = \frac{1 -\beta (1-\delta_2)}{\beta \mu} \]
+\[ l_2 = k_2 \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{1}{1-\mu}}\]
+Before we finish, we make two notes that will simplify our calculations:
+\[ k_1^\alpha l_1^{1-\alpha} = k_1 \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right) \]
+\[ k_2^\mu l_1^{1-\mu} = k_2 \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right) \]
+so
+
+\[ k_1^\alpha l_1^{1-\alpha} - \delta_1 k_1 = k_1 \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha}  - \delta_1\right) \]
+\[ k_2^\mu l_1^{1-\mu} - \delta_2 k_2 = k_2 \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} - \delta_2 \right) \]
+Now, we use the third FOC:
+\[ \frac{(1-\alpha) k_1^\alpha l_1^{-\alpha}}{( k_1^\alpha l_1^{1-\alpha} - \delta_1 k_1 )^2} = \frac{(1-\mu) k_2^\mu l_2^{-\mu}}{( k_2^\mu l_2^{1-\mu} -\delta_2 k_2 )^2} \]
+\[ \frac{(1-\alpha) \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{-\alpha}{1-\alpha}}}{k_1^2 \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha}  - \delta_1\right)^2} = \frac{(1-\mu) \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{-\mu}{1-\mu}}}{k_2^2 \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} - \delta_2 \right)^2} \]
+\[ \sqrt{\frac{(1-\alpha)  \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{\mu}{1-\mu}}}{(1-\mu)\left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{\alpha}{1-\alpha}}}} = \frac{k_1 \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha}  - \delta_1\right)}{k_2 \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} - \delta_2 \right)} \]
+\[ \frac{k_1 }{k_2 } = \frac{\left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} - \delta_2 \right)}{\left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha}  - \delta_1\right)}\sqrt{\frac{(1-\alpha)  \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{\mu}{1-\mu}}}{(1-\mu)\left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{\alpha}{1-\alpha}}}}  \]
+\[ \approx 0.653567 \]
+Noting the labor constraint:
+\[ l_1 + l_2 = 1 \]
+\[ k_1 \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{1}{1-\alpha}} +k_2 \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{1}{1-\mu}} = 1 \]
+\[ k_2 \left((k_1/k_2)\left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{1}{1-\alpha}} + \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{1}{1-\mu}}\right) = 1\]
+\[ k_2 = \frac{1}{(k_1/k_2)\left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{1}{1-\alpha}} + \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{1}{1-\mu}}}\]
+\[ = \frac{1}{\frac{\left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} - \delta_2 \right)}{\left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha}  - \delta_1\right)}\sqrt{\frac{(1-\alpha)  \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{\mu}{1-\mu}}}{(1-\mu)\left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{\alpha}{1-\alpha}}}} \left( \frac{1 - \beta (1-\delta_1)}{\beta \alpha} \right)^{\frac{1}{1-\alpha}} + \left( \frac{1 -\beta (1-\delta_2)}{\beta \mu} \right)^{\frac{1}{1-\mu}}} \]
+\[ = \frac{1}{\frac{\left( \frac{1 - 0.95 (1-0.08)}{0.95\cdot  0.5} - 0.08 \right)}{\left( \frac{1 - 0.95 (1-0.05)}{0.95 \cdot 0.36}  - 0.05\right)}\sqrt{\frac{(1-0.36)  \left( \frac{1 -0.95 (1-0.08)}{0.95 \cdot 0.5} \right)^{\frac{0.5}{1-0.5}}}{(1-0.5)\left( \frac{1 - 0.95 (1-0.05)}{0.95 \cdot 0.36} \right)^{\frac{0.36}{1-0.36}}}} \left( \frac{1 - 0.95 (1-0.05)}{0.95 \cdot 0.36} \right)^{\frac{1}{1-0.36}} + \left( \frac{1 -0.95 (1-0.08)}{0.95 \cdot 0.5} \right)^{\frac{1}{1-0.5}}} \]
+\[ k_2 \approx 6.1597 \]
+\[ k_1 = (k_1/k_2)k_2 \approx 4.0258 \]
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
