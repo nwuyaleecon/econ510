@@ -42,6 +42,8 @@ while error > tolerance
         k_prime(i) = theta*(k^alpha)*(l_k(i)^(1-alpha)) - c;
         interpolated_value = interp1(k_grid, c_k, k_prime(i), 'linear', 'extrap');
         c_interpolated(i) = interpolated_value;
+        k = k_prime(i);
+        c = c_interpolated(i);
         l_prime(i) = fsolve(@(l)optimal_labor_function(l,k,c), l_ss, options);
     end
     
