@@ -396,7 +396,7 @@ We can use the envelope theorem to plug in for the first two, and unify the last
 Making some simplifications, we get
 \[ \frac{\beta \theta \alpha k_1^{\alpha-1}l_1^{1-\alpha} + \beta (1-\delta_1) - 1}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} = 0 \]
 \[ \frac{\beta \theta \mu k_2^{\mu-1}l_2^{1-\mu} + \beta (1-\delta_2) - 1}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} = 0 \]
-\[ \frac{(1-\alpha) k_1^\alpha l_1^{-\alpha}}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} = \frac{(1-\mu)\theta k_2^\mu l_2^{-\mu}}{( k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} \]
+\[ \frac{(1-\alpha) k_1^\alpha l_1^{-\alpha}}{(\theta k_1^\alpha l_1^{1-\alpha} + (1-\delta_1)k_1 - k_1')^\sigma} = \frac{(1-\mu) k_2^\mu l_2^{-\mu}}{(\theta k_2^\mu l_2^{1-\mu} + (1-\delta_2)k_2 - k_2')^\sigma} \]
 \problempart{(2)} See separate file.
 \problempart{(3)} To compute the steady-states, we know
 $(k_1^*)' = k_1^*$, $(k_2^*)' = k_2^*$. Then using the given parameter values, our FOCs can be written as
@@ -433,5 +433,18 @@ Noting the labor constraint:
 \[ = \frac{1}{\frac{\left( \frac{1 - 0.95 (1-0.08)}{0.95\cdot  0.5} - 0.08 \right)}{\left( \frac{1 - 0.95 (1-0.05)}{0.95 \cdot 0.36}  - 0.05\right)}\sqrt{\frac{(1-0.36)  \left( \frac{1 -0.95 (1-0.08)}{0.95 \cdot 0.5} \right)^{\frac{0.5}{1-0.5}}}{(1-0.5)\left( \frac{1 - 0.95 (1-0.05)}{0.95 \cdot 0.36} \right)^{\frac{0.36}{1-0.36}}}} \left( \frac{1 - 0.95 (1-0.05)}{0.95 \cdot 0.36} \right)^{\frac{1}{1-0.36}} + \left( \frac{1 -0.95 (1-0.08)}{0.95 \cdot 0.5} \right)^{\frac{1}{1-0.5}}} \]
 \[ k_2 \approx 6.1597 \]
 \[ k_1 = (k_1/k_2)k_2 \approx 4.0258 \]
+See figures for the sequences of capital, labor, and consumption.
+\begin{figure}
+\includegraphics[scale=0.8]{ps3q3_k}
+\caption{Two-sector economy, sequences of capital}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.8]{ps3q3_l}
+\caption{Two-sector economy, sequences of labor}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.8]{ps3q3_c}
+\caption{Two-sector economy, sequences of consumption}
+\end{figure}
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
