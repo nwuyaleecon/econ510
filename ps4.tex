@@ -229,40 +229,15 @@ where
 \[ K = \mu K^A + (1-\mu) K^B \]
 \[ (K^A)' = \mathcal{G}^A(K^A, K^B) \]
 \[ (K^B)' = \mathcal{G}^B(K^A, K^B) \]
-We will now prove a lemma: the policy function $g$ only depends on $k, K$, and $g$ is linear in $k$.
 
-\textbf{Proof}:
-Take $g(k, K) = a(K)k + b(K)$. Then the aggregation:
-\[ K' = \mu g(K^A, K) + (1-\mu) g(K^B, K) = \mu (a(K) K^A + b(K)) + (1-\mu)(a(K) K^B + b(K)) = b(k) + a(K)(\mu K^A + (1-\mu)K^B) \] \[= a(K) K + b(K) = g(K, K) = \mathcal{G}(K) \]
-It suffices then to check that something of the form $g(k, K)$ satisfies the Euler condition.
-\[ \frac{1}{c} = \beta R(K') \frac{1}{c'} \]
-\[ c' = \beta R(K')c \]
-\[ R(K')k' + W(K') - k'' = (\beta R(K')) (R(K)k + W(K) - k') \]
-\[ (1-\beta)R(K')k' + W(K') - k'' = \beta R(K')R(K)k + \beta R(K')W(K) \]
-\[ (1-\beta)R(G(K))(a(K)k + b(K)) + W(G(K)) - a(K')k' - b(K') = \beta R(G(K))R(K)k + \beta R(G(K))W(K) \]
-\[ (1-\beta)R(G(K))(a(K)k + b(K)) + W(G(K)) - a(G(K))(a(K)k + b(K)) - b(G(K)) = \beta R(G(K))R(K)k + \beta R(G(K))W(K) \]
-\[ a(K) k((1-\beta)R(G(K))-a(G(K))) + (1-\beta)R(G(K))b(K) - a(G(K))b(K) + W(G(K)) - b(G(K)) =\]\[ \beta R(G(K))R(K)k + \beta R(G(K))W(K) \]
-Hence we can pick $a, b$ such that
-\[a(K)((1-\beta)R(G(K))-a(G(K))) = \beta R(G(K))R(K)  \]
-\[ b(K)((1-\beta)R(G(K)) - a(G(K))) - b(G(K)) = \beta R(G(K))W(K) - W(G(K))  \]
-and we will satisfy the Euler condition. Hence we have finished the proof.
-
-Now, under this, the maximization problem becomes:
-\[ V(K, a; \mathcal{G}) = \max_{a'} \log(c) + \beta V(K', a'; \mathcal{G}) \]
-where
-\[ c = R(K)a + W(K) - a' \]
-\[ a, a' \ge \underline{A} \]
-\[ K' = \mathcal{G}(K) \]
-
-Therefore, we can solve for $g(k, K)$ under no heterogeneity, and then we can simply use the different initial conditions to determine $\mathcal{G}^A$, $\mathcal{G}^B$. To solve for $g(k, K)$, we can use value function iteration repeatedly and the result of exercise 4.4 from SLP that we did last week. Specifically, we can start from an arbitrary $g_0(k, K)$, and use VFI to approximate the fixed point $V_0$ such that
-\[ V_0(k, K) = \max_{k'} u(R(K)a + W(K) - k') + \beta V_0(k', g_0(K, K)) \]
-Defining $g_1$ then as the optimal policy of $V_0$, and subsequently $g_i$ as the optimal policy for $V_{i-1}$ and $V_i$ as the fixed point under $g_i$, then we exactly have the proposition of SLP exercise 4.4 part c. Hence we know $V_i$ will converge to the true fixed point. We can then use the following algorithm to find $V, g$:
+To solve for $g(k, K)$, we can use policy function iteration repeatedly and the result of exercise 4.4 from SLP that we did last week. Specifically, we can start from an arbitrary $\mathcal{G}^A_0, \mathcal{G}^B_0$, and use VFI to approximate the fixed point $V_0$ such that
+\[ V_0(K^A, K^B, k) = \max_{k'} u(R(K)a + W(K) - k') + \beta V_0(k', \mathcal{G}^A_0(K^A, K^B), \mathcal{G}^B_0(K^A, K^B)) \]
+Define $g_1$ then as the optimal policy of $V_0$, and subsequently $g_i$ as the optimal policy for $V_{i-1}$ and $V_i$ as the fixed point under the $\mathcal{G}^A, \mathcal{G}^B$ induced by $g_i$, then we exactly have the proposition of SLP exercise 4.4 part c. Hence we know $V_i$ will converge to the true fixed point. We can then use the following algorithm to find $V, g$:
 \begin{enumerate}
-\item Guess a $\mathcal{G}(K)$.
+\item Guess $\mathcal{G}^A, \mathcal{G}^B$.
 \item Use PFI to find the optimal policy $g$ for $k'$ such that
-\[ V(k, K) = \max_{k'} u(R(K)a + W(K) - k') + \beta V(k', \mathcal{G}(K)) \]
-where we interpolate $V$ to find $V(k', \mathcal{G}(K))$.
-\item Update $\mathcal{G}(K) = g(K, K)$.
+\[ V(K^A, K^B, k) = \max_{k'} u(R(K)a + W(K) - k') + \beta V(\mathcal{G}^A(K^A, K^B),\mathcal{G}^B(K^A, K^B),k') \]
+\item Update $\mathcal{G}^A(K^A, K^B) = g(K^A, K^B, K^A)$ and $\mathcal{G}^B(K^A, K^B) = g(K^A, K^B, K^B)$.
 \item Go back to 2 and repeat until desired precision.
 \end{enumerate}
 
