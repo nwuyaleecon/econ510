@@ -148,7 +148,13 @@ The value function needs to know the previous period capital investment and the 
 subject to
 \[ 0 \le k' \le zk^{\alpha} + (1-\delta)k \]
 where $z \neq z'$, $z, z' \in \{ z_H, z_L\}$.
-\problempart{(4)}
+\problempart{(4)} See separate code, and figure 1 for policy functions. We note that at $p=0.95$, the consumer believes that they will stay in their current state with higher probability, and hence they will save less in the high state and save more in the lower state than at $p=0.5$.
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{ps5q2}
+\caption{Question 2, part 4.}
+\end{figure}
+
 \pagebreak
 \problem{3}
 
@@ -159,8 +165,34 @@ where
 \[ k, k' \ge \underline{b} \]
 and $z \neq z', z, z' \in \{ z^H, z^L \}$.
 \problempart{(2)}
-See attached code and figures.
+See attached code and figure 2. There isn't a lot of relative variation in the consumer's income, so in both states if net income is high, the consumer will not save very much and push down savings. The only cases where the policy function could cause savings to increase is when the savings are very low and the consumer is in the high income state.
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{ps5q3p2}
+\caption{Question 3, part 2.}
+\end{figure}
 \problempart{(3)}
 See attached code.
+
+In figure 3, we vary $p$ between $0.5$ and $0.95$. We note that as $p \to 1$, the savings behavior in the high state decreases; as the consumer is more certain about staying with higher income, the consumer in the high state will not save as much than when the consumer is less certain. Similarly, in the low state, as $p \to 1$, the consumer is more certain about having lower income next period, and will thus save more than if the consumer thought there was a higher probability of transitioning to the higher state.
+
+In figure 4, we vary $\epsilon$, from $0.1$ to $0.3$. We note that at higher $\epsilon$, the difference in income between the two states is more pronounced, and hence the more the savings behavior will compensate for the potential change in state; when the state is high and $\epsilon$ is higher, the lower state is worse, and the consumer saves more. When $\epsilon$ is high and the state is low, the consumer saves less than if $\epsilon$ was lower.
+
+In figure 5, we vary $\underline{b}$, lowering from $-0.1$ to $-0.2$. We see that in both states, savings decreases at all levels. Since the consumer is less worried about hitting the borrowing constraint, the consumer generally saves less in either state.
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{ps5q3p3_1}
+\caption{Question 3, part 3. Variation in $p$.}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{ps5q3p3_2}
+\caption{Question 3, part 3. Variation in $\epsilon$.}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{ps5q3p3_3}
+\caption{Question 3, part 3. Variation in $\underline{b}$.}
+\end{figure}
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
