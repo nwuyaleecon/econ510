@@ -61,15 +61,18 @@ axes1 = axes('Parent',figure1);
 plot(k)
 xlim(axes1,[-10, T+10]);
 ylim(axes1,[0, 1.5*k_s]); 
+saveas(figure1, "ps1q1fig1.png")
 
 figure2 = figure;
 axes2 = axes('Parent',figure2);
 plot(r_k)
 xlim(axes2,[-10, T+10]);
 ylim(axes2,[0, 0.2]); 
+saveas(figure2, "ps1q1fig2.png")
 
 figure3 = figure;
 axes3 = axes('Parent',figure3);
 plot(w)
 xlim(axes3,[-10, T+10]);
 ylim(axes3,[15, 35]); 
+saveas(figure3, "ps1q1fig3.png")
