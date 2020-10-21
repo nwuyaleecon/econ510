@@ -123,7 +123,20 @@ At steady state, we get
 \problempart{(3)}
 Steady state utility is given by:
 \[ \log(c^*) + g^* = \log\left( f(k^*) - \frac{\delta k^*}{1 - \bar{\tau}}\right) + \bar{\tau}\frac{\delta k^*}{1 - \bar{\tau}} \]
-Taking the FOC:
-\[ \frac{f'(k^*) - \frac{\delta}{1-\bar{\tau}}}{f(k^*) - \frac{\delta k^*}{1 - \bar{\tau}}} + \bar{\tau}\frac{\delta k^*}{1 - \bar{\tau}} = 0 \]
+We first note that since
+\[  f'(k^*) = \frac{1 - \beta(1-\delta)}{\beta(1-\bar{\tau})}  \]
+\[ f''(k^*) \frac{\partial k^*}{\partial  \bar{\tau} } = \frac{1 - \beta(1-\delta)}{\beta(1-\bar{\tau})^2}  \]
+\[  \frac{\partial k^*}{\partial  \bar{\tau} } = \frac{1 - \beta(1-\delta)}{f''(k^*)\beta(1-\bar{\tau})^2}  \]
+
+Taking the FOC from the utility expression, we get:
+\[ \frac{f'(k^*)\frac{\partial k^*}{\partial \bar{\tau}} - \frac{\delta }{1 - \bar{\tau}} \frac{\partial k^*}{\partial \bar{\tau}} - \frac{\delta k^*}{(1-\bar{\tau})^2}}{f(k^*) - \frac{\delta k^*}{1 - \bar{\tau}}} + \frac{\delta k^*}{1 - \bar{\tau}} + \delta \bar{\tau}\frac{(1 - \bar{\tau})\frac{\partial k^*}{\partial \bar{\tau}} + k^*}{(1 - \bar{\tau})^2} = 0 \]
+
+\[ \frac{\frac{1 - \beta(1-\delta)}{\beta(1-\bar{\tau})}\frac{1 - \beta(1-\delta)}{f''(k^*)\beta(1-\bar{\tau})^2} - \frac{\delta }{1 - \bar{\tau}} \frac{1 - \beta(1-\delta)}{f''(k^*)\beta(1-\bar{\tau})^2} - \frac{\delta k^*}{(1-\bar{\tau})^2}}{c^*} + \frac{\delta k^*}{1 - \bar{\tau}}+ \delta \bar{\tau}\frac{(1 - \bar{\tau})\frac{1 - \beta(1-\delta)}{f''(k^*)\beta(1-\bar{\tau})^2} + k^*}{(1 - \bar{\tau})^2} = 0 \]
+
+\[ \frac{1}{c^*}\left(\frac{(1 - \beta(1-\delta))^2}{f''(k^*)\beta^2(1-\bar{\tau})^3} -  \frac{\beta\delta(1 - \beta(1-\delta))}{f''(k^*)\beta^2(1-\bar{\tau})^3} - \frac{\delta k^*}{(1-\bar{\tau})^2}\right) + \frac{\delta k^*}{1 - \bar{\tau}}+ \delta \bar{\tau}\frac{1 - \beta(1-\delta) }{f''(k^*)\beta(1 - \bar{\tau})^3} + \frac{\delta \bar{\tau} k^* }{(1-\bar{\tau})^2} = 0 \]
+
+\[ \frac{1}{c^*}\left(\frac{(1 - \beta(1-\delta))(1-\beta)}{f''(k^*)\beta^2(1-\bar{\tau})^3} - \frac{\delta k^*}{(1-\bar{\tau})^2}\right) + \delta \bar{\tau}\frac{1 - \beta(1-\delta) }{f''(k^*)\beta(1 - \bar{\tau})^3} + \frac{\delta k^* }{(1-\bar{\tau})^2} = 0 \]
+\[ \frac{1}{c^*}\left(\frac{(1 - \beta(1-\delta))(1-\beta)}{f''(k^*)k^*\beta^2(1-\bar{\tau})} - \delta\right) + \delta \bar{\tau}\frac{1 - \beta(1-\delta) }{f''(k^*)k^*\beta(1 - \bar{\tau})} + \delta = 0 \]
+This together with the expressions for $c^*, k^*, i^*$ will determine the optimal $\bar{\tau}$. In general, the solution will \textbf{not} maximize utility away from the steady state; since taxes influence the consumer's household investment choices (and therefore affect the capital stock, consumption behavior, and rate of steady state convergence), the maximization choice of $\bar{\tau}$ only looking at the steady state will generally not optimize utility if starting away from steady state.
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
