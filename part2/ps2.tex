@@ -1,0 +1,119 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+\renewcommand{\vector}[1]{\boldsymbol{#1}}
+\newcommand{\problem}[1]{\section*{Problem #1}}
+\newcommand{\problempart}[1]{\paragraph{#1}}
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{Problem Set 2}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\textbf{Note:} I use bold symbols to denote vectors and nonbolded symbols to denote scalars. I primarily use vector notation to shorthand some of the sums, since many of the sums are dot products.
+
+\problem{1}
+
+\problempart{(1)} The Bellman equation is given by
+\[ V(k, z) = \max_{h, k'} \left(u(c, 1-h) + \beta \sum_{z'} \pi(z' | z) V(k', z')\right) \]
+subject to
+\[ c + k' \le f(k, z, h) + (1-\delta)k \]
+\problempart{(2)}
+Taking FOCs, we find:
+\[ u_1(c, 1-h) = \beta \sum_{z'} \pi(z' | z) V_1(k', z') \]
+\[ -u_2(c, 1-h) + u_1(c, 1-h) f_3(k, z, h) z = 0 \]
+The envelope theorem gives
+\[ V_1(k, z) = u_1(c, 1-h) \left(1 - \delta + f_1(k, z, h)\right) \]
+so we can rewrite the first FOC as
+\[ u_1(c, 1-h) = \beta \sum_{z'} \pi(z' | z) u_1(c', 1-h') \left(1 - \delta + f_1(k', z', h')\right) \]
+\problempart{(3)}
+No. The FOC determining labor is
+\[ -u_2(c, 1-h) + u_1(c, 1-h) f_3(k, z, h) = 0 \]
+and is fully categorized by the current state and capital levels. Hence there is no state uncertainty in determining labor supply.
+\problempart{(4)}
+We guess that the labor law of motion is constant for some $h^*$ and the capital supply follows the functional form:
+\[ k' = Czk^\alpha h^{1-\alpha} \]
+then
+\[ c = zk^\alpha h^{1-\alpha}(1-C) \]
+The Euler equation gives
+\[ 1/c = \beta \sum_{z'} \pi(z' | z)  \frac{ \alpha z' (k')^{\alpha - 1}(h')^{1-\alpha}}{(1-C)z' (k')^\alpha (h')^{1-\alpha}} \]
+\[ \frac{1}{zk^\alpha h^{1-\alpha}} = \beta  \frac{ \alpha }{k'} \]
+\[ \frac{1}{zk^\alpha h^{1-\alpha}} = \beta  \frac{ \alpha }{Czk^\alpha h^{1-\alpha}} \]
+\[C  = \beta\alpha \]
+So capital evolves as
+\[ k' = \alpha\beta zk^\alpha h^{1-\alpha} \]
+The labor condition is
+\[ \gamma g'(h) = \frac{1}{c} (1-\alpha)zk^\alpha h^{-\alpha}  \]
+\[ \gamma g'(h) = \frac{1}{zk^\alpha h^{-\alpha}(1-\alpha\beta)} (1-\alpha)zk^\alpha h^{1-\alpha}  \]
+\[ \gamma g'(h) = \frac{1}{zk^\alpha h^{-\alpha}(1-\alpha\beta)} (1-\alpha)zk^\alpha h^{1-\alpha}  \]
+\[ h^* g'(h^*) = \frac{1-\alpha}{\gamma(1-\alpha\beta)} \]
+which should pin down $h^*$.
+\problempart{(5)}
+There is no labor supply fluctuation; in this model, labor is constant. The change in wages as a result of increases/decreases in technology does not affect the amount of labor supplied.
+\pagebreak
+
+\problem{2}
+\problempart{(1)} The Bellman equations are
+\[ V_H(k) = \max_{k'}\left[ u(z_H k^\alpha + (1-\delta) k - k') + \beta \pi_{HH}V_H(k')+ \beta \pi_{HL}V_L(k') \right] \]
+\[ V_L(k) = \max_{k'}\left[ u(z_L k^\alpha + (1-\delta) k - k') + \beta \pi_{LH}V_H(k')+ \beta \pi_{LL}V_L(k') \right] \]
+\problempart{(2)} We guess
+\[ V_H(k) = a_H + b_H \log k \]
+\[ V_L(k) = a_L + b_L \log k \]
+Pluggin into the Bellman equations:
+\[ a_H + b_H \log k = \max_{k'}\left[ \log(z_H k^\alpha + (1-\delta) k - k') + \beta \pi_{HH}(a_H + b_H \log k')+ \beta \pi_{HL}(a_L + b_L \log k') \right] \]
+\[ a_L + b_L \log k = \max_{k'}\left[ \log(z_L k^\alpha + (1-\delta) k - k') + \beta \pi_{LH}(a_H + b_H \log k')+ \beta \pi_{LL}(a_L + b_L \log k') \right] \]
+Taking the maximiation FOC of the first:
+\[ \frac{1}{z_H k^\alpha + (1-\delta) k - k'} = \beta \pi_{HH} b_H \frac{1}{k'} + \beta \pi_{HL} b_L\frac{1}{k'}\]
+\[ \frac{k'}{z_H k^\alpha + (1-\delta) k - k'} = \beta (\pi_{HH} b_H + \pi_{HL} b_L)\]
+\[ k' = \beta (\pi_{HH} b_H + \pi_{HL} b_L)(z_H k^\alpha + (1-\delta) k - k')\]
+\[ k'(1 + \beta (\pi_{HH} b_H + \pi_{HL} b_L)) = \beta (\pi_{HH} b_H + \pi_{HL} b_L)(z_H k^\alpha + (1-\delta) k )\]
+\[ k' = \frac{\beta (\pi_{HH} b_H + \pi_{HL} b_L)(z_H k^\alpha + (1-\delta) k )}{1 + \beta (\pi_{HH} b_H + \pi_{HL} b_L)}\]
+Plugging into the first FOC, using $\delta = 1$, and isolating only the $k$ terms, we get
+\[ b_H \log k = \alpha \log k + \alpha \beta(\pi_{HH}b_H+ \pi_{HL}b_L) \log k \]
+\[ b_H = \alpha( 1 + \beta(\pi_{HH}b_H+ \pi_{HL}b_L) ) \]
+Doing the same the second FOC, we get
+\[ b_L = \alpha( 1 + \beta(\pi_{LH}b_H + \pi_{LL}b_L)) \]
+Solving, we get
+\[ b_L = b_H = \frac{\alpha}{1 - \alpha \beta} \]
+We can also solve for $a_H, a_L$, but we can determine the optimal policies and the path of capital from just $b$.
+The optimal policies are
+\[ k'_H = \frac{\beta b_H z_H k^\alpha }{1 + \beta b_H} = \alpha \beta z_H k^\alpha \]
+\[ k'_L = \frac{\beta b_L z_L k^\alpha }{1 + \beta b_L}= \alpha \beta z_L k^\alpha \]
+\problempart{(3)} If the state is always $z_L$, then capital just converges to the steady state at $z_L$, which is
+\[ k^*_L = (\alpha \beta z_L)^{1/(1-\alpha)} \]
+\problempart{(4)} We recall from our observation from the last problem set that $\log$ utility is the limit case of the CRRA as $\theta = 1$, and the income/substitution effects balance out, and the savings rate is constant. We thus note then that changing $\pi_{HH}$ and $\pi_{LL}$ has no effect on the law of motion of capital.
+\pagebreak
+\problem{3}
+\problempart{(1)}
+\pagebreak
+\problem{4}
+\problempart{(1)}
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
