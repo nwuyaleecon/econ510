@@ -116,11 +116,82 @@ So the equilibrium rate and wages are
 \[ r = \alpha (\gamma L_t)^{(1-\alpha)/\alpha} \]
 \[ w = (1-\alpha) (\gamma L_t)^{(1-\alpha)/\alpha} k \]
 \problempart{(3)}
-
+The household problem is
+\[ \max \int e^{-\rho t} \frac{c(t)^{1-\theta} - 1}{1-\theta} \]
+such that
+\[ \dot{a}(t) = (1-\tau)(r(t)a(t) - w(t)) - c(t) \]
+The present value Hamiltonian is
+\[ H =\frac{c(t)^{1-\theta} - 1}{1-\theta} + \lambda ((1-\tau)(r(t)a(t) - w(t)) - c(t)) \]
+Taking the FOCs:
+\[ \frac{\partial H}{\partial c} = c^{-\theta} - \lambda = 0 \]
+\[ \frac{\partial H}{\partial a} = \lambda(1-\tau)r = \rho \lambda - \dot{\lambda} \]
+\[ -\theta \frac{\dot{c}}{c} = \frac{\dot{\lambda}}{\lambda} \]
+\[ \rho - (1-\tau)r = \frac{\dot{\lambda}}{\lambda}  \]
+\[ (1-\tau)r - \rho = \theta \frac{\dot{c}}{c}  \]
+\[  \frac{\dot{c}}{c} = \frac{1}{\theta}\left((1-\tau)\alpha (\gamma L_t)^{(1-\alpha)/\alpha} - \rho \right) \]
+Let this value be the growth rate $g$.
+In a steady state equilibrium, we note that this is also the growth rate of capital and output. For this to be positive, we need
+\[ (1-\tau)\alpha (\gamma L_t)^{(1-\alpha)/\alpha} > \rho \]
 \problempart{(4)}
+The transversality condition is
+\[ \lim_{t\to\infty} a(t) \mu(t) e^{-\rho t} = 0 \]
+\[ \lim_{t\to\infty} a(0) e^{gt} \mu(0)e^{-((1-\tau)r-\rho)} e^{-\rho t} = 0 \]
+\[ \lim_{t\to\infty} e^{-((1-\tau)r - g)}  = 0 \]
+This implies
+\[ g < (1-\tau)r \]
+Since
+\[ \theta g = (1-\tau)r - \rho \]
+\[ \theta g + \rho > g \]
+\[ \rho > (1-\theta)g \]
 \problempart{(5)}
+Taking the hint, we let $k$ grow at the same rate as $c$ at $g$, we just need to determine the initial state $c(0)$.
+\[ \dot{k} = (1-\gamma)y - c = (1-\gamma)Ak - c \]
+\[ g = (1-\gamma)A - c/k = (1-\gamma)A - c(0)/k(0) \]
+\[ (1-\gamma)Ak(0) - gk(0) = c(0) \]
+And then
+\[ c(t) = c(0) e^{gt} \]
+\[ k(t) = k(0) e^{gt} \]
+And we just have to check transversality:
+\[ lim_{t\to\infty}e^{-\rho t} c(t)^{-\theta} k(t) = \lim_{t\to\infty}e^{(1-\theta) g - \rho} \]
+Assuming the inequality in 4, this goes to 0, so transversality holds.
 \problempart{(6)}
+We know
+\[g  = \frac{1}{\theta}\left((1-\tau)\alpha (\gamma L_t)^{(1-\alpha)/\alpha} - \rho \right) \]
+Note that
+\[ \tau (r a + w)L = \tau Y  = \gamma Y \]
+so $\tau = \gamma$. Hence
+
+\[g  = \frac{1}{\theta}\left((1-\gamma)\alpha (\gamma L_t)^{(1-\alpha)/\alpha} - \rho \right) \]
+Then
+\[ \frac{\partial g}{\partial \gamma} = \frac{1}{\theta}\left((1-\alpha)(1-\gamma)L_t (\gamma L_t)^{(1-\alpha)/\alpha - 1}- \alpha (\gamma L_t)^{(1-\alpha)/\alpha}  \right) \]
+\[= \frac{1}{\theta} L^{(1-\alpha)/\alpha}(\gamma)^{(1-\alpha)/\alpha}\left((1-\alpha)(1-\gamma) (\gamma )^{- 1}- \alpha   \right) \]
+So this is positive if
+\[ (1-\alpha)(1-\gamma) > \alpha\gamma \]
+\[ 1 - \alpha > \gamma \]
+and negative if
+\[ 1 - \alpha < \gamma \]
+See figure 1 for a graph of $g$ as a function of $\gamma$ when $\alpha = 0.8$. We note that $g$ is increasing in $\gamma$ for $\gamma < 0.2$ and decreasing in $\gamma$ for $\gamma > 0.2$. The growth rate is maximized at $1-\alpha$.
+\begin{figure}
+ \begin{centering}
+   \includegraphics[width=6cm]{ps3fig1}
+   \caption{Graph of $g$ in terms of $\gamma$. $\alpha$ set to 0.8}
+ \end{centering}
+\end{figure}
 \problempart{(7)}
+Plugging in the consumption law of motion, we get the government tries to maximize
+\[ \int_0^\infty \frac{\left(k(0) e^{g(\gamma)t} ((1-\gamma)\alpha A(\gamma) - g(\gamma)) \right)^{1-\theta} - 1}{1-\theta} e^{-\rho t} \]
+Removing terms with no $\gamma$ dependence, we need to maximize
+\[ \frac{\left(k(0)((1-\gamma)\alpha A(\gamma) - g(\gamma))\right)^{1-\theta}}{(1-\theta)((1-\theta)g(\gamma) - \rho)} \]
+Taking the first derivative wrt $\gamma$, we have
+\[ \frac{k(0)\left(k(0)((1-\gamma)\alpha A(\gamma) - g(\gamma))\right)^{-\theta} \left((1-\theta)g(\gamma) - \rho)\left(\alpha(1-\gamma)A'(\gamma)-\alpha A(\gamma) - g'(\gamma)\right) - \left((1-\gamma)\alpha A(\gamma) - g(\gamma)\right)  g'(\gamma)\right)}{((1-\theta)g(\gamma) - \rho)^2} \]
+Take $\gamma = 1-\alpha$. We know from the previous part that $g'(\gamma) = 0$, so
+\[ \frac{k(0) \left((1-\theta)g(\gamma) - \rho)\left(\alpha (1-\alpha) A(\gamma)/\gamma -\alpha A(\gamma)\right) \right)}{((1-\theta)g(\gamma) - \rho)^2\left(k(0)((1-\gamma)\alpha A(\gamma) - g(\gamma))\right)^{\theta}} \]
+
+\[ =\frac{k(0) \left((1-\theta)g(\gamma) - \rho)\left(\alpha A(\gamma) -\alpha A(\gamma)\right) \right)}{((1-\theta)g(\gamma) - \rho)^2\left(k(0)((1-\gamma)\alpha A(\gamma) - g(\gamma))\right)^{\theta}} \]
+
+\[ =\frac{k(0) \left((1-\theta)g(\gamma) - \rho)0\right)}{((1-\theta)g(\gamma) - \rho)^2\left(k(0)((1-\gamma)\alpha A(\gamma) - g(\gamma))\right)^{\theta}} \]
+\[ = 0 \]
+Hence the growth maximizing choice of $\gamma$ is also welfare optimal. Intuitively, this makes sense; growth and welfare are both trying to maximize $(1-\gamma)A$, and so optimizing one also optimizes the other.
 \problempart{(8)}
 The government should tax labor where possible, and finance the remainder with taxes on capital. Since the labor supply is inelastic and consumers do not have utility for leisure in this model, taxing labor as much as possible minimizes impact of the tax.
 \problempart{(9)}
@@ -285,7 +356,34 @@ In a competitive equilibrium:
   \item Firms maximize profits, so wages and capital return rates are set as in part 1.
   \item Markets clear: $K(t+1) = s(t)$
 \end{itemize}
+Since the utility is a variant of Cobb-Douglas, we get
+\[ s(t) = \frac{\beta w(t)}{1+\beta} \]
+So capital evloves as
+\[ K(t+1) = \frac{\beta}{1+\beta} \left( (aK(t))^{\frac{\epsilon-1}{\epsilon}} + 1 \right)^{\frac{1}{\epsilon - 1}} \]
+The steady state level of capital $K^*$ then solves
+
+\[ K^* = \frac{\beta}{1+\beta} \left( (aK^*)^{\frac{\epsilon-1}{\epsilon}} + 1 \right)^{\frac{1}{\epsilon - 1}} \]
 \problempart{(4)}
+The modified law of motion is
+
+\[ K(t+1) = \frac{\beta}{1+\beta}\sigma \left( (aK(t))^{\frac{\epsilon-1}{\epsilon}} + 1 \right)^{\frac{\epsilon}{\epsilon - 1}} \]
+\[ K(t+1)^{\frac{\epsilon-1}{\epsilon}} = \left(\frac{\beta}{1+\beta}\sigma\right)^{\frac{\epsilon-1}{\epsilon}} \left( a^{\frac{\epsilon-1}{\epsilon}}K(t)^{\frac{\epsilon-1}{\epsilon}} + 1 \right) \]
+\[ K(t+1)^{\frac{\epsilon-1}{\epsilon}} =  \left(\frac{\beta}{1+\beta}\sigma\right)^{\frac{\epsilon-1}{\epsilon}} a^{\frac{\epsilon-1}{\epsilon}}K(t)^{\frac{\epsilon-1}{\epsilon}} + \left(\frac{\beta}{1+\beta}\sigma\right)^{\frac{\epsilon-1}{\epsilon}}  \]
+\[ K(t+1)^{\frac{\epsilon-1}{\epsilon}} =  \left(\frac{\beta}{1+\beta}\sigma a\right)^{\frac{\epsilon-1}{\epsilon}} K(t)^{\frac{\epsilon-1}{\epsilon}} + \left(\frac{\beta}{1+\beta}\sigma\right)^{\frac{\epsilon-1}{\epsilon}}  \]
+Since $\sigma a \beta / (1+\beta) > 1$, the sequence of $K(t)^{\frac{\epsilon-1}{\epsilon}}$ grows at a constant rate. There isn't a steady state, but a steady growth equilibrium. See the figure for diagram.
+\begin{figure}
+\begin{centering}
+\begin{tikzpicture}
+\draw[thick,->] (0,0) -- (8,0) node[anchor=north west] {$k$};
+\draw[thick,->] (0,0) -- (0,8) node[anchor=south east] {$k'$};
+\draw (0,0) -- (8,8) node[anchor=south west] {$k=k'$};
+\draw[blue] (0,0) -- (6,8) node[anchor=south east] {Constant wage share of output};
+\draw[red] (0,0) .. controls (1,3) .. (8,5) node[anchor=south west] {Competitive wage};
+\end{tikzpicture}
+\caption{Question 5, Part 4}
+\end{centering}
+\end{figure}
 \problempart{(5)}
+The economy in (4) has long-run balanced growth, so it is richer in the long run than the economy in (3), which eventually stops growing at steady-state.
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
