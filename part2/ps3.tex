@@ -1,0 +1,135 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+\renewcommand{\vector}[1]{\boldsymbol{#1}}
+\newcommand{\problem}[1]{\section*{Problem #1}}
+\newcommand{\problempart}[1]{\paragraph{#1}}
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{Problem Set 3}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\textbf{Note:} I use bold symbols to denote vectors and nonbolded symbols to denote scalars. I primarily use vector notation to shorthand some of the sums, since many of the sums are dot products.
+
+\problem{1}
+
+\problempart{(1)}
+The optimal time length of schooling maximizes:
+\[ \max_S \int_S^\infty e^{-rt}w(t)h(t) \]
+\[ \max_S \int_S^\infty e^{-(r - g)t}S^{\alpha} \]
+\[ \max_S \frac{S^{\alpha}w(0)e^{-(r-g)S}}{r-g} \]
+\[ \frac{\alpha S^{\alpha - 1}}{S^\alpha} = r-g\]
+\[  S = \frac{\alpha}{r-g} = 11.25\]
+\problempart{(2)}
+The present value of consumption is
+\[ \int_S^\infty e^{-rt}c_t = \int_S^\infty w(0) e^{-(r-g)t}S^\alpha \]
+\[  = \frac{w(0) e^{-(r-g)S}S^\alpha }{r-g}\]
+\problempart{(3)}
+We need
+\[ \max  \int e^{-(\rho + \nu)t} \log c(t) \]
+subject to
+\[ \int e^{- rt}c(t) = \frac{w(0) e^{-(r-g)S}S^\alpha }{r-g} \]
+we have
+\[ e^{-(\rho + \nu)t} \frac{1}{c(t)} = \lambda e^{-rt}\]
+\[ \frac{1}{\lambda }e^{-(\rho + \nu - r)t}  = c(t) \]
+and we get the EE:
+\[ \frac{\dot{c}(t)}{c(t)}= r - \rho - \nu  \]
+which implies
+\[ c(t) = c(0) e^{(r-\rho-\nu)t} \]
+Plugging into budget constraint:
+\[ \frac{c(0)}{\rho+\nu} = \frac{w(0) e^{-(r-g)S}S^\alpha }{r-g} \]
+\[ c(0) = \frac{w(0)(\rho+\nu) e^{-(r-g)S}S^\alpha }{r-g} \]
+
+\problempart{(4)}
+Intuitively, since consumption is smoothed across time, individuals will go into debt before they reach their optimal level of schooling. Specifically, at time $T < S$, we have the present value of an individual's asset holding is given by
+\[ -e^{rT}\int_0^T e^{-rt}c(t) \]
+which is clearly negative. However, after the individual finishes schooling, the present value of asset holding is
+\[ e^{rT}\left(\int_S^T e^{-rt} W_t dt - \int_0^T e^{-rt}c_t \right) \]
+\[ = e^{rT}\left(w(0)S^{\alpha} \int_S^T e^{-(r-g)t} dt - c(0)\int_0^T  e^{-(\rho+\nu)t} \right) \]
+\[ = e^{rT}\left(\frac{w(0)S^{\alpha}}{r-g} \left( e^{-(r-g)T} - e^{-(r-g)S}  \right)- \frac{w(0)(\rho+\nu) e^{-(r-g)S}S^\alpha }{r-g} \left(\frac{e^{-(\rho+\nu)T} - 1}{\rho+\nu}  \right) \right) \]
+\[ = \frac{w(0)S^{\alpha}e^{rT}}{r-g}\left( \left( e^{-(r-g)T} - e^{-(r-g)S}  \right)-  e^{-(r-g)S} \left(e^{-(\rho+\nu)T} - 1  \right) \right) \]
+\[ = \frac{w(0)S^{\alpha}e^{rT}}{r-g}\left(  e^{-(r-g)T} - e^{-(r-g)S} \left(e^{-(\rho+\nu)T} \right) \right) \]
+\[ = \frac{w(0)S^{\alpha}e^{rT}e^{-(r-g)S}}{r-g}\left(   e^{-(r-g)(T-S)}- e^{-(\rho+\nu)T}  \right) \]
+Since $r-g > \rho+\nu$, this will eventually turn positive at
+\[ e^{-(r-g)(T-S) + (\rho + \nu)T} = 1 \]
+\[ (r-g)(T-S) = (\rho + \nu)T \]
+\[ (r-g - \rho - \nu)T = (r-g)S \]
+\[ T = \frac{(r-g)S}{(r-g - \rho - \nu)} \]
+so after that point, the individual paid of their student loans and will begin accummulating wealth.
+
+\problempart{(5)}
+If we take the $\log$ of the wage rate, we find that
+\[ \log W(t) = \log w(0) + \alpha \log S + gt \]
+which we can use to empirically measure the schooling effectivness parameter $\alpha$.
+\problempart{(6)}
+Imposing a borrowing constraint can induce people to take less schooling than they would otherwise, since due to a borrowing constraint they would have to reduce consumption as a result. Alternatively, individuals might also have to instead work first, and take schooling later in their life. One potential way to alleviate this issue is to provide students a stipend, funded from wages. That way, consumers may be able to still achieve the same welfare since they receive some income during their schooling.
+
+\problem{2}
+
+\problempart{(1)}
+\problempart{(2)}
+\problempart{(3)}
+\problempart{(4)}
+\problempart{(5)}
+\problempart{(6)}
+\problempart{(7)}
+\problempart{(8)}
+\problempart{(9)}
+
+\problem{3}
+
+\problempart{(1)}
+\problempart{(2)}
+\problempart{(3)}
+\problempart{(4)}
+\problempart{(5)}
+\problempart{(6)}
+
+\problem{4}
+
+\problempart{(1)}
+\problempart{(2)}
+\problempart{(3)}
+\problempart{(4)}
+\problempart{(5)}
+\problempart{(6)}
+\problempart{(7)}
+
+\problem{5}
+
+\problempart{(1)}
+\problempart{(2)}
+\problempart{(3)}
+\problempart{(4)}
+\problempart{(5)}
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
