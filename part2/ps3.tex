@@ -44,11 +44,11 @@
 
 \problempart{(1)}
 The optimal time length of schooling maximizes:
-\[ \max_S \int_S^\infty e^{-rt}w(t)h(t) \]
-\[ \max_S \int_S^\infty e^{-(r - g)t}S^{\alpha} \]
-\[ \max_S \frac{S^{\alpha}w(0)e^{-(r-g)S}}{r-g} \]
-\[ \frac{\alpha S^{\alpha - 1}}{S^\alpha} = r-g\]
-\[  S = \frac{\alpha}{r-g} = 11.25\]
+\[ \max_S \int_S^\infty e^{-(r + \nu)t}w(t)h(t) \]
+\[ \max_S \int_S^\infty e^{-(r+ \nu - g)t}S^{\alpha} \]
+\[ \max_S \frac{S^{\alpha}w(0)e^{-(r+ \nu-g)S}}{r-g} \]
+\[ \frac{\alpha S^{\alpha - 1}}{S^\alpha} = r+ \nu-g\]
+\[  S = \frac{\alpha}{r+ \nu-g} = 9\]
 \problempart{(2)}
 The present value of consumption is
 \[ \int_S^\infty e^{-rt}c_t = \int_S^\infty w(0) e^{-(r-g)t}S^\alpha \]
@@ -92,43 +92,199 @@ If we take the $\log$ of the wage rate, we find that
 which we can use to empirically measure the schooling effectivness parameter $\alpha$.
 \problempart{(6)}
 Imposing a borrowing constraint can induce people to take less schooling than they would otherwise, since due to a borrowing constraint they would have to reduce consumption as a result. Alternatively, individuals might also have to instead work first, and take schooling later in their life. One potential way to alleviate this issue is to provide students a stipend, funded from wages. That way, consumers may be able to still achieve the same welfare since they receive some income during their schooling.
-
+\pagebreak
 \problem{2}
 
 \problempart{(1)}
+We need to show that the firm demands can be aggregated. Since the firms are identical, the net capital demanded is $nK_i$, and net labor is $nL_j$. Then the net output is such that
+\[ \sum Y_i = nY_i = n(K_i)^\alpha(GL_i)^{1-\alpha} = (nK_i)^\alpha(GnL_i)^{1-\alpha} = K^\alpha (GL)^{1-\alpha} = Y \]
+We just have to confirm that the same rates and wages $R, w$ also optimize the firm's problem:
+\[ R = \alpha (K_i)^{\alpha - 1}(GL_i)^{1-\alpha} = \alpha (nK_i)^{\alpha - 1}(GnL_i)^{1-\alpha} = \alpha K^{\alpha - 1}(GL)^{1-\alpha}\]
+\[ w = (1-\alpha) (K_i)^{\alpha}(GL_i)^{-\alpha}G = (1-\alpha) (nK_i)^{\alpha}(GnL_i)^{-\alpha}G= (1-\alpha) K^{\alpha}(GL)^{-\alpha}G\]
+and hence these rates induce the aggregated demands for the representative firm. Hence, the firms can be aggregated into a single representative firm.
 \problempart{(2)}
+Assuming firms treat the government spending as exogenous, we have
+\[ G_t = \gamma Y_t = \gamma k_t^\alpha G_t^{1-\alpha} L_t^{1-\alpha} \]
+\[ G_t ^\alpha = \gamma k_t^\alpha L_t^{1-\alpha} \]
+\[ G_t = (\gamma L_t^{1-\alpha})^{1/\alpha} k_t \]
+Rewriting output, we get
+\[ Y_t =k_t^\alpha G_t^{1-\alpha} L_t^{1-\alpha} \]\[=  k_t^\alpha L_t^{1-\alpha} (\gamma L_t^{1-\alpha})^{(1-\alpha)/\alpha} k_t^{1-\alpha} \]
+\[ = k_t (\gamma L_t)^{(1-\alpha)/\alpha} \]
+Taking \[ A = (\gamma L_t)^{(1-\alpha)/\alpha} \]
+we have the AK model.
+So the equilibrium rate and wages are
+\[ r = \alpha (\gamma L_t)^{(1-\alpha)/\alpha} \]
+\[ w = (1-\alpha) (\gamma L_t)^{(1-\alpha)/\alpha} k \]
 \problempart{(3)}
+
 \problempart{(4)}
 \problempart{(5)}
 \problempart{(6)}
 \problempart{(7)}
 \problempart{(8)}
+The government should tax labor where possible, and finance the remainder with taxes on capital. Since the labor supply is inelastic and consumers do not have utility for leisure in this model, taxing labor as much as possible minimizes impact of the tax.
 \problempart{(9)}
 
+Assuming firms treat the government spending as exogenous, we have
+\[ G_t = \gamma Y_t = \gamma k_t^\alpha G_t^{\xi(1-\alpha)} L_t^{1-\alpha} \]
+\[ G_t ^{1 - \xi(1-\alpha)} = \gamma k_t^\alpha L_t^{1-\alpha} \]
+\[ G_t = (\gamma L_t^{1-\alpha})^{1/(1 - \xi(1-\alpha))} k_t^{\alpha/(1 - \xi(1-\alpha))} \]
+Rewriting output, we get
+\[ Y_t =k_t^\alpha G_t^{1-\alpha} L_t^{1-\alpha} \]
+\[=  k_t^\alpha L_t^{1-\alpha} (\gamma L_t^{1-\alpha})^{\xi(1-\alpha)/(1 - \xi(1-\alpha))} k_t^{\xi(1-\alpha)\alpha/(1 - \xi(1-\alpha))} \]
+\[ = (\gamma L_t)^{\xi(1-\alpha)/(1 - \xi(1-\alpha))} k_t^{\alpha /(1 - \xi(1-\alpha))} \]
+which is the standard neoclassical form, as long as $\xi < 1$, converging to steady state, no growth.
+\pagebreak
 \problem{3}
 
 \problempart{(1)}
+No. $\dot{h}/h$ will be decreasing in $h$, and hence the growth rate drops, so long-run growth cannot be sustained.
 \problempart{(2)}
+The household problem is
+\[ \max \int e^{-\rho t} \frac{c(t)^{1-\theta} - 1}{1-\theta} \]
+subject to
+\[ \dot{h}(t) = \delta h(t)(1-u(t)) \]
+\[ \dot{k}(t) = k(t)^\beta (u(t)h(t))^{1-\beta}\bar{h}(t)^\gamma - c(t) \]
+The current value Hamiltonian is
+\[ H = \frac{c(t)^{1-\theta} - 1}{1-\theta} + \lambda(t)\delta h(t)(1-u(t)) + \mu(t) (k(t)^\beta (u(t)h(t))^{1-\beta}\bar{h}(t)^\gamma - c(t)) \]
+The FOCs:
+\[ \frac{\partial H}{\partial c} = c^{-\theta} - \mu = 0 \]
+\[ \frac{\partial H}{\partial h} = \lambda \delta (1-u) + \mu (1-\beta) k^\beta (uh)^{-\beta}u\bar{h}^\gamma = \rho \lambda - \dot{\lambda} \]
+\[ \frac{\partial H}{\partial u} = - \lambda \delta h + \mu (1-\beta)k^\beta (uh)^{-\beta}h \bar{h}^\gamma = 0  \]
+\[ \frac{\partial H}{\partial k} = \mu \beta k^{\beta - 1}(u h )^{1-\beta}\bar{h}^\gamma = \rho \mu - \dot{\mu} \]
 \problempart{(3)}
-\problempart{(4)}
-\problempart{(5)}
-\problempart{(6)}
+From the first FOC, we get
+\[ \frac{\dot{c}}{c}= -\frac{1}{\theta} \frac{\dot{\mu}}{\mu} \]
+From the fourth, we have
+\[ k^{\beta - 1}(u h )^{1-\beta}\bar{h}^\gamma - \rho = - \frac{\dot{\mu}}{\mu} \]
+Combining, we get
+\[ \frac{\dot{c}}{c}= \frac{1}{\theta} \left( \beta k^{\beta - 1}(u h )^{1-\beta}\bar{h}^\gamma - \rho  \right) \]
+\[ = \frac{1}{\theta} \left( \beta k^{\beta - 1}u^{1-\beta}h^{1-\beta+\gamma} - \rho  \right)  \]
 
+\problempart{(4)}
+\[ g_h = \frac{\dot{h}}{h} = \delta (1-u) \]
+Since in equilibrium
+\[ y = k^\beta (uh)^{1-\beta}\bar{h}^\gamma = k^\beta u^{1-\beta}h^{1-\beta + \gamma}\]
+\[ \dot{y} = \beta k^{\beta - 1}\cdot{k} u^{1-\beta}h^{1-\beta + \gamma} + (1-\beta + \gamma )k^\beta u^{1-\beta}h^{-\beta + \gamma} \]
+
+\[ g_y = \beta g_k  + (1-\beta + \gamma )g_h \]
+Taking $g_k = g_c = g_y$, we get
+\[ g_k = g_c = \frac{1-\beta + \gamma}{1-\beta}\delta (1-u) \]
+\problempart{(5)}
+We need to find the steady state $u$. From the 3rd FOC:
+\[ \lambda \delta h = \mu (1-\beta)k^\beta u^{-\beta}h^{1 - \beta + \gamma}  \]
+\[ g_\lambda + g_h = g_\mu + \beta g_k + (1-\beta+\gamma) g_h  \]
+From FOC 2:
+\[  \rho - \delta (1-u) - (\mu/\lambda) (1-\beta) k^\beta (uh)^{-\beta}u\bar{h}^\gamma = g_\lambda \]
+Since from FOC 3
+\[ \frac{\delta h}{(1-\beta)k^\beta u^{-\beta}h^{1 - \beta + \gamma}} = \mu/\lambda   \]
+Plugging in we get
+\[  \rho - \delta (1-u) - \delta u = g_\lambda \]
+\[  \rho - \delta  = g_\lambda \]
+We already know
+\[ g_c = -\frac{1}{\theta} g_\mu \]
+So aall together we get
+\[ g_\lambda + g_h = g_\mu + \beta g_k + (1-\beta+\gamma) g_h  \]
+\[ \rho - \delta   = - \theta g_c + \beta g_k + (\gamma - \beta) g_h  \]
+Using
+\[ g_c = g_k = \frac{1-\beta + \gamma}{1-\beta} g_h \]
+we get
+\[ \rho - \delta   =  \left( (\beta - \theta)\frac{1-\beta + \gamma}{1-\beta} + \gamma - \beta \right)  g_h  \]
+\[ g_h  =  \frac{(\rho - \delta )(1-\beta)}{ \gamma - \theta(1-\beta + \gamma) }    \]
+\[ u^* = 1 - \frac{(\rho - \delta )(1-\beta)}{ \delta (\gamma - \theta(1-\beta + \gamma) )}  \]
+
+\[ g_c = g_k  =  \frac{(\rho - \delta )(1-\beta+\gamma)}{ \gamma - \theta(1-\beta + \gamma) }    \]
+
+\problempart{(6)}
+Since $\bar{h}$ is no longer exogenous, the second FOC changes to
+
+\[ \frac{\partial H}{\partial h} = \lambda \delta (1-u) + \mu (1-\beta + \gamma) k^\beta u^{1-\beta}h^{-\beta+\gamma} = \rho \lambda - \dot{\lambda} \]
+\[ \delta (1-u) + (\mu/\lambda) (1-\beta + \gamma) k^\beta u^{1-\beta}h^{-\beta+\gamma} = \rho  - g_\lambda \]
+\[ \rho - \delta  -
+\frac{ \gamma}{1-\beta} \delta u   = g_\lambda \]
+\[ \rho - \delta -
+\frac{ \gamma}{1-\beta} \delta  = \left((\beta- \theta) \frac{1-\beta + \gamma}{1-\beta} + \left(\gamma - \beta + \frac{\gamma}{1-\beta}\right) \right) g_h  \]
+\[ (\rho - \delta)(1-\beta) -
+\gamma \delta  = \left((\beta- \theta) (1-\beta + \gamma) + (\gamma - \beta)(1-\beta)  - \gamma  \right) g_h  \]
+
+\[ \frac{\gamma \delta - (\rho - \delta)(1-\beta)
+}{\theta (1-\beta + \gamma)}  =  g_h  \]
+
+\[ \frac{\gamma \delta - (\rho - \delta)(1-\beta)
+}{\theta (1-\beta)}  =  g_c = g_k  \]
+
+These are different from the results in part 5, and the social planner would accumulate human capital faster. One way to induce efficiency in the previous result would be to provide some subsidy for $1-u$ to encourage education.
+\pagebreak
 \problem{4}
 
 \problempart{(1)}
+The problem is
+\[ \max \log c_1(t) + \beta \log c_2(t) \]
+subject to
+\[ c_1(t) + s(t) \le w(t) \]
+\[ c_2(t) \le s(t)R(t+1) \]
 \problempart{(2)}
+The firm problem FOCs:
+\[ w(t) = (1-\alpha) A(t)K(t)^\alpha L(t)^{-\alpha} \]
+\[ R(t) = \alpha A(t)K(t)^{\alpha-1} L(t)^{1-\alpha} \]
 \problempart{(3)}
+\begin{itemize}
+  \item Households solve the household optimization problem.
+  \item Firms solve the firm profit maximization problem
+  \item Markets clear: $K(t+1) = s(t)L(t)$
+\end{itemize}
+A steady state equilibrium is a competitive equilibrium where $y, k$
+grow at constant rates
 \problempart{(4)}
+From the firm problem above, we get
+\[ \frac{1}{c_1} = \lambda \]
+\[ \frac{\beta}{c_2} = \mu \]
+\[ \lambda = \mu R(t+1) \]
+\[ \frac{1}{c_1} = R(t+1)\frac{\beta}{c_2} \]
+\[ \beta  c_1 = s \]
+\[ s(t) = \frac{\beta w(t)}{1+\beta} \]
+\[ c_1(t) = \frac{w(t)}{1+\beta}  \]
+\[ c_2(t) =  \frac{\beta R(t+1)w(t)}{1+\beta} \]
+So the law of motion of capital is
+\[ k(t+1) = \frac{\beta w(t)}{(1+\beta)(1+n)} = \frac{\beta (1-\alpha) A(t)k(t)^\alpha}{(1+\beta)(1+n)} \]
 \problempart{(5)}
-\problempart{(6)}
-\problempart{(7)}
+Taking $\hat{k}$ as suggested, we have from the law of motion:
+\[ k(t+1) = \frac{\beta (1-\alpha) A(t)k(t)^\alpha}{(1+\beta)(1+n)} \]
+\[ k(t)(1+g)^{1/(1-\alpha)} = \frac{\beta (1-\alpha) A(t)k(t)^\alpha}{(1+\beta)(1+n)} \]
+\[ 1 = \frac{\beta (1-\alpha) A(t)k(t)^{\alpha-1}}{(1+\beta)(1+n)(1+g)^{1/(1-\alpha)}} \]
+\[ 1  = \frac{\beta (1-\alpha) (\hat{k}^*)^{\alpha-1}}{(1+\beta)(1+n)(1+g)^{1/(1-\alpha)}} \]
 
+\[ (\hat{k}^*)^{1-\alpha}  = \frac{\beta (1-\alpha) }{(1+\beta)(1+n)(1+g)^{1/(1-\alpha)}} \]
+\[\hat{k}^*   = \left(\frac{\beta (1-\alpha) }{(1+\beta)(1+n)(1+g)^{1/(1-\alpha)}} \right)^{1/(1-\alpha)} \]
+By the problem hint, capital grows at $(1+g)^{1/(1-\alpha)}$. Since capital is linearly related to $c_1, s, w$, it follows that all of these also grow at the same rate. Also, since $R$ is determined entirely by $\hat{k}$, since this is constant, $R$ is also constant. Hence $c_2$ also grows at the same rate as capital.
+\problempart{(6)}
+The law of motion for $\hat{k}$ takes the form
+\[ \hat{k}(t+1) = C\hat{k}(t)^\alpha \]
+where $C$ is some constant in terms of $\beta, n, \alpha, g$. Then we note that for $\hat{k} > \hat{k}^*$, since $\alpha < 1$, $\hat{k}(t)^\alpha$ is concave, so $ \hat{k} > C\hat{k}^\alpha > \hat{k}^*$. So when $\hat{k}$ is above $\hat{k}^*$, it will decrease to the steady state. The similar argument holds when $\hat{k} < \hat{k}^*$, so the equilibrium we found in the previous part is globally stable.
+\problempart{(7)}
+By examining the expression for $\hat{k}^*$, we note this shifts down, and since $R$ depends inversely on $\hat{k}^*$, $R$ increases. Additionally, since the growth rate of $k$ increases, $k$ shifts up. Since at steady state equilibrium, $w, s, c_1, c_2$ are linearly dependent on $k$, all of these also all shift up.
+\pagebreak
 \problem{5}
 
 \problempart{(1)}
+The equilibrium wage is
+\[ w(t) = \left( (aK(t))^{\frac{\epsilon-1}{\epsilon}} + 1 \right)^{\frac{1}{\epsilon - 1}} \]
+The equilibrium return to capital is
+\[ R(t) = \frac{a}{(aK(t))^{1/\epsilon}}\left( (aK(t))^{\frac{\epsilon-1}{\epsilon}} + 1 \right)^{\frac{1}{\epsilon - 1}} \]
 \problempart{(2)}
+\[ \frac{w}{Y} = \left( (aK(t))^{\frac{\epsilon-1}{\epsilon}} + 1 \right)^{-1} \]
+as $K(t)$ increases, since $\epsilon > 1$, the parenthesized expression increases and hence the labor share decreases.
 \problempart{(3)}
+In a competitive equilibrium:
+\begin{itemize}
+  \item Household solves consumer problem:
+  \[ \max \log c_1(t) + \beta \log c_2(t) \]
+  subject to
+  \[ c_1(t) + s(t) \le w(t) \]
+  \[ c_2(t) \le s(t)R(t+1) \]
+  \item Firms maximize profits, so wages and capital return rates are set as in part 1.
+  \item Markets clear: $K(t+1) = s(t)$
+\end{itemize}
 \problempart{(4)}
 \problempart{(5)}
 \end{document}
