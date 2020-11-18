@@ -172,7 +172,7 @@ Yes, the increase in $k(t)$ over time will decrease the equilibrium labor share.
   \[ k^* = \frac{\beta\left(3\sqrt{k^*} + 1 \right)}{(1+ \beta)(1+n)} \]
   \[ \frac{(1+ \beta)(1+n)} {\beta} k^* = 3\sqrt{k^*} + 1  \]
 
-  \item Asymptotically, the LHS of our expression in part (a) grows linearly, and the RHS grows at rate $\sqrt{k^*}$. Since at $k^* = 0$, the RHS is greater than the LHS, the LHS asymptotically grows slower than the RHS, and both sides of our expression are monotonically increasing, there can only be one intersection point and hence only one steady state. See figure 1 for relevant diagram.
+  \item Asymptotically, the LHS of our expression in part (a) grows linearly, and the RHS grows at rate $\sqrt{k^*}$. Since at $k^* = 0$, the RHS is greater than the LHS, the LHS asymptotically grows slower than the RHS, and both sides of our expression are monotonically increasing and weakly concave, there can only be one intersection point and hence only one steady state. See figure 1 for relevant diagram.
   \begin{figure}
   \begin{centering}
   \includegraphics[width=10cm]{ps5fig1}
@@ -188,13 +188,69 @@ Yes, the increase in $k(t)$ over time will decrease the equilibrium labor share.
   \[ \beta \approx 1.000015 \]
 \end{enumerate}
 \problempart{(4)}
+No dynamic inefficiency means no inefficiency in consumption allocation across generations, from consumers oversaving. To show that this model does not have dynamic inefficiency, we can rewrite the output in terms of $k = K/L$:
+\[ f(k) = (3\sqrt{k(t)} + 1)^2 \]
+We then note that
+\[ f'(k) = \frac{3(3 \sqrt{k(t)}+1)}{\sqrt{k(t)}} = 9 + 3k^{-1/2} \]
+\[ r^* = f'(k^*) - 1 = 3(1+ \beta^{-1})\sqrt{k^*}(1+n)  - 1\]
+\[= (3(1+ \beta^{-1})\sqrt{k^*}-1) + \left(3(1+ \beta^{-1})\sqrt{k^*} \right)n\]
+Let $\alpha = \left(3(1+ \beta^{-1})\sqrt{k^*} \right)$. We note $\alpha \ge 1$, and
+\[ r^* = (\alpha - 1) + \alpha n \ge n \]
+So there cannot be dynamic inefficiency. The key property is the constant elasticity of substitution between labor and capital.
 \problempart{(5)}
+No, and the answer does not depend on $\sigma$. Because the funds are reinvested into the capital stock, the funded social security will not decrease savings, and hence cannot lead to Pareto improvement when $r^* < n$. If $\sigma$ is 0, we still have dynamic inefficiency, and increasing $\sigma$ weakly increases net savings, and hence there is no Pareto improvement regardless of the choice of $\sigma$.
 \pagebreak
 \problem{2}
 \problempart{(1)}
+The final good producer's problem is
+\[ \max 2L^{1/2} \int_0^{N(t)}x(\nu, t)^{1/2}\ d\nu  - w L - \int_0^{N(t)} p^x(\nu, t) x(\nu, t) \  d\nu \]
+The wage FOC is
+\[w = L^{-1/2} \int_0^{N(t)}x(\nu, t)^{1/2}\ d\nu \]
+The intermediate good FOC is
+\[ L^{1/2} x(\nu, t)^{-1/2} = p^x(\nu, t) \]
+The demand of intermediate inputs is then
+\[ x = \frac{L}{(p^x)^{2}} \]
+The monopolist pricing on the intermediate input maximizes
+\[ \max (p - \psi) x = \frac{L(p-\psi)}{p^2} \]
+Taking the FOC, we get
+\[ \frac{p^2L - 2pL(p - \psi)}{p^4} = 0 \]
+\[ p = 2(p - \psi) \]
+\[ p = 2\psi \]
+\[ x = \frac{L}{4\psi^2} \]
+So the profit is
+\[ \pi = (p - \psi)x = \frac{L}{4\psi} \]
+Plugging in $\psi = 0.5$, we have
+\[ p = 1 \]
+\[ x = L \]
+\[ \pi = L/2 \]
+\[ w = L^{-1/2} \int_0^{N(t)}x(\nu, t)^{1/2}\ d\nu = L^{-1/2} \int_0^{N(t)}L^{1/2}\ d\nu = N \]
+and net output is
+\[ \hat{Y} = Y - \psi Nx = 2NL - (1/2)NL = (3/2)NL \]
+
 \problempart{(2)}
+The firm value function Bellman equation is
+\[ r V - \dot{V} = \pi \]
+\[ V = \frac{\pi}{r} \]
+By free entry, $V = 1$, so $r = \pi = L/2 = 0.05$. So the growth rate is
+\[ g = \frac{\dot{c}}{c} = r - \rho = 0.05 - 0.02 = 0.03 \]
 \problempart{(3)}
+The social planner will price intermediate goods competitively, so $p = \psi$ and $x = L/\psi^2 = 4L$. So net output is $\hat{Y} = 4NL - 2NL = 2NL$. The social planner problem is then
+\[ \max \int_0^\infty e^{-\rho t}\log C \ dt \]
+subject to
+\[ C + Z \le 2NL \]
+\[ \dot{N} = Z \]
+The present value Hamiltonian is
+\[ \log C + \mu(2LN - C) \]
+Taking the FOCs:
+\[ 1/C = \mu \implies 1 = \mu C \implies \dot{\mu}C = - \dot{C} \mu \implies \frac{\dot{C}}{C} = - \frac{\dot{\mu}}{\mu}\]
+\[ 2\mu L = -\dot{\mu} + \rho \mu  \implies -\frac{\dot{\mu}}{\mu} = 2L - \rho\]
+so the socially optimal growth rate is $2L - \rho = 0.18$
 \problempart{(4)}
-\problempart{(5)}
+In the equilibrium, we have
+\[ C = \hat{Y} - Z = 0.15 N - 0.03 N = 0.12 \]
+In the socially optimal scenario, we have
+\[ C = 2NL - 0.18N = 0.2 - 0.18 = 0.02 \]
+The time zero consumption is lower in the socially optimal case, since the research investment for higher growth rate $Z$ is larger than the equilibrium research investment.
+
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
