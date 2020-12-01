@@ -1,0 +1,224 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{enumitem}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+\renewcommand{\vector}[1]{\boldsymbol{#1}}
+\newcommand{\problem}[1]{\section*{Problem #1}}
+\newcommand{\problempart}[1]{\paragraph{#1}}
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{Problem Set 5}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\textbf{Note:} I use bold symbols to denote vectors and nonbolded symbols to denote scalars. I primarily use vector notation to shorthand some of the sums, since many of the sums are dot products.
+
+\problem{1}
+\problempart{(1)}
+The objective function of the final good firms is (fixing the price of the final good to 1)
+\[ \max A(i) x(i)^\alpha L^\beta - p(i) x(i) - w_L L \]
+The FOC on this maximization gives
+\[ w_L = \beta A(i) x(i)^\alpha L^{\beta - 1} =  \beta A(i) x(i)^\alpha \]
+\[ p(i) = \alpha A(i) x(i)^{\alpha - 1} \]
+\[ x(i)^{1- \alpha} = \frac{\alpha A(i)}{p(i)} \]
+\[ x(i) = \left(\frac{\alpha A(i)}{p(i)}\right)^{1/(1-\alpha)} \]
+And so this is the demand for intermediate good of vintage $i$.
+\problempart{(2)}
+Let the wage of skilled labor be $w_H$. The monopolist problem is then
+\[ \max p(i) H_1 - w_H H_1 \]
+Since $H_1 = x(i)$, this objective c an be rewritten as
+\[ (p(i) - w_H) \left(\frac{\alpha A(i)}{p(i)}\right)^{1/(1-\alpha)}  \]
+Taking the FOC:
+\[ (\alpha A(i))^{1/(1-\alpha)}\left(p(i)^{-1/(1-\alpha)} - \frac{p(i) - w_H}{1-\alpha} p(i)^{-(2-\alpha)/(1-\alpha)}\right)  \]
+Setting this to 0, we get
+\[ p(i)^{-1/(1-\alpha)} = \frac{p(i) - w_H}{1-\alpha} p(i)^{-(2-\alpha)/(1-\alpha)} \]
+\[ p(i) = \frac{p(i) - w_H}{1-\alpha} \]
+\[ (1-\alpha)p(i) = p_i - w_H \]
+\[ \alpha p(i) = w_H \]
+\[ p(i) = w_H(i) / \alpha \]
+The production of $x(i)$ is then
+\[ x(i) = \left(\frac{\alpha A(i)}{p(i)}\right)^{1/(1-\alpha)} \]
+\[ = \left(\frac{\alpha^2 A(i)}{w_H(i)}\right)^{1/(1-\alpha)} \]
+and the profit is then
+\[ \pi(i) = (p(i) - w_H(i))(x(i)) \]
+\[ = w_H(i)((1-\alpha)/\alpha)\left(\frac{\alpha^2 A(i)}{w_H(i)}\right)^{1/(1-\alpha)} \]
+\[ = (1-\alpha) w_H(i)^{-\alpha/(1-\alpha)}\alpha^{(1+\alpha)/(1-\alpha)}A(i)^{1/(1-\alpha)} \]
+\problempart{(3)}
+The research firm maximizes:
+\[ \max \lambda H_2(i) V(i+1) - w_H(i) H_2(i) \]
+If $H_2(i) > 0$, the K-T condition is
+\[ \lambda V(i+1) = w_H \]
+if $H_2(i) = 0$, then K-T condition is
+\[ \lambda V(i+1) < w_H \]
+\problempart{(4)}
+The Bellman equation is
+\[ \left(r + \lambda H_2(i+1) \right)V(i+1) = \pi(i+1) \]
+\[ V(i+1) = \frac{\pi(i+1)}{r + \lambda H_2(i+1)} \]
+\problempart{(5)}
+Consider $H_2(i) > 0$. We showed
+\[ \lambda V(i+1) = w_H(i) \]
+\[  \frac{\lambda\pi(i+1)}{r + \lambda H_2(i+1)} = w_H(i) \]
+\[ \frac{w_H(i)}{\lambda} = \frac{\pi(i+1)}{r + \lambda H_2(i+1)} \]
+The LHS is the marginal cost of research, the RHS is the marginal benefit of research.
+\problempart{(6)}
+We know
+\[ x(i) = H_1(i) \]
+So
+\[ \left(\frac{\alpha^2 A(i)}{w_H(i)}\right)^{1/(1-\alpha)}  = H - H_2(i) \]
+\[ (H- H_2(i))^{1-\alpha} = \frac{\alpha^2 A(i)}{w_H(i)} \]
+\[ w_H(i) = \alpha^2 A(i) (H- H_2(i))^{\alpha-1} \]
+Now, plugging into the difference equation, we get
+\[ \frac{\alpha^2 A(i) (H - H_2(i))^{\alpha-1}}{\lambda} = \frac{(1-\alpha) w_H(i+1)^{-\alpha/(1-\alpha)}\alpha^{(1+\alpha)/(1-\alpha)}A(i+1)^{1/(1-\alpha)}}{r + \lambda H_2(i+1)} \]
+\[ \frac{\alpha^2 A(i) (H - H_2(i))^{\alpha-1}}{\lambda} = \frac{(1-\alpha) \left(\alpha^2 A(i+1) (H - H_2(i+1))^{\alpha-1} \right)^{-\alpha/(1-\alpha)}\alpha^{(1+\alpha)/(1-\alpha)}A(i+1)^{1/(1-\alpha)}}{r + \lambda H_2(i+1)} \]
+\[ (H - H_2(i))^{\alpha-1} = \frac{\lambda\gamma (1-\alpha) \left( H - H_2(i+1)\right)^{\alpha} }{\alpha(r + \lambda H_2(i+1))} \]
+The LHS is increasing in $H_2$, since the marginal cost of research is increasing in research (more demand for researchers, higher wage). The RHS is decreasing in $H_2$, since higher skilled labor wage reduces monopolist profits and reduces lifetime of the patent.
+\problempart{(7)}
+The expression derived in part (6) contains no state variables, which implies that $H_2$ follows a law of motion independent of the other state variables. $H_2$ only depends on the research investment in the next period, so there are many potential laws. Focusing on steady state solutions, we have
+
+\[ (H - \hat{H_2})^{\alpha-1} = \frac{\lambda\gamma (1-\alpha) \left( H - \hat{H_2}\right)^{\alpha} }{\alpha(r + \lambda \hat{H_2})} \]
+\[ r + \lambda \hat{H_2} = \frac{\lambda\gamma (1-\alpha) }{\alpha}(H - \hat{H_2}) \]
+\[ \lambda \hat{H_2} + \frac{\lambda\gamma (1-\alpha) }{\alpha} \hat{H_2} = \frac{\lambda\gamma (1-\alpha) }{\alpha}H - r \]
+\[ (\alpha \lambda  + \lambda\gamma (1-\alpha) ) \hat{H_2} = \lambda\gamma (1-\alpha) H - \alpha r \]
+\[ \hat{H}_2 = \frac{\lambda\gamma (1-\alpha) H - \alpha r}{\alpha \lambda  + \lambda\gamma (1-\alpha)} \]
+The solution is unique. It is not necessarily positive: that requires
+\[ \lambda \gamma (1-\alpha) H > \alpha r \]
+$1-\alpha$ is the Lerner measure of monopoly power, so $\alpha$ is an inverse measure of monopoly power. Note that $\hat{H_2}$ decreases in $\alpha$, so the weaker the monopoly power, the less skilled labor is used for research and hence slower growth.
+\problempart{(8)}
+Cool.
+
+\problempart{(9)}
+The optimal social planner research investment satisfies the FOC:
+\[ \frac{\partial }{\partial H_2} \frac{A_0(H - H_2)^\alpha }{r - \lambda(\gamma-1)H_2}  = 0\]
+\[  \frac{-(r - \lambda(\gamma-1)H_2) \alpha A_0(H - H_2)^{\alpha -1 } - A_0(H - H_2)^\alpha(- \lambda(\gamma-1))}{(r - \lambda(\gamma-1)H_2)^2}  = 0\]
+\[ (r - \lambda(\gamma-1)H_2) \alpha A_0(H - H_2)^{\alpha -1 } = A_0(H - H_2)^\alpha(\lambda(\gamma-1))\]
+\[ (r - \lambda(\gamma-1)H_2) \alpha  = (H - H_2)(\lambda(\gamma-1))\]
+\[ \alpha r - \alpha \lambda(\gamma-1)H_2  = \lambda(\gamma-1)H - \lambda(\gamma-1)H_2\]
+\[ \alpha r - \lambda(\gamma-1)H  = \alpha \lambda(\gamma-1)H_2  - \lambda(\gamma-1)H_2\]
+\[ H_2^S = \frac{\alpha r - \lambda(\gamma-1)H}{(\alpha-1) \lambda(\gamma-1) } \]
+\[ = \frac{ \lambda(\gamma-1)H - \alpha r}{ \lambda(\gamma-1)(1-\alpha) } \]
+\[ =  \frac{ \lambda(\gamma-1)H - \alpha r}{ \lambda(\alpha+\gamma - \alpha\gamma - 1) }\]
+The laissez-faire steady state is
+\[ \hat{H}_2 = \frac{\lambda\gamma (1-\alpha) H - \alpha r}{\alpha \lambda  + \lambda\gamma (1-\alpha)} \]
+\[ = \frac{\lambda\gamma (1-\alpha) H - \alpha r}{\lambda\left( \alpha  + \gamma -\alpha\gamma\right)} \]
+For too high growth, we have
+\[ \hat{H}_2 > H_2^S \]
+\[ \frac{\lambda\gamma (1-\alpha) H - \alpha r}{\lambda\left( \alpha  + \gamma -\alpha\gamma\right)} > \frac{ \lambda(\gamma-1)H - \alpha r}{ \lambda(\alpha+\gamma - \alpha\gamma - 1) } \]
+\[ \frac{\lambda\gamma (1-\alpha) H - \alpha r}{\alpha  + \gamma -\alpha\gamma} > \frac{ \lambda(\gamma-1)H - \alpha r}{ \alpha+\gamma - \alpha\gamma - 1 } \]
+\[ \frac{\lambda\gamma (1-\alpha) H - \alpha r}{ \lambda(\gamma-1)H - \alpha r} > \frac{\alpha  + \gamma -\alpha\gamma}{ \alpha+\gamma - \alpha\gamma - 1 } \]
+\[ \frac{\lambda\gamma H -\alpha\lambda\gamma H - \alpha r}{ \lambda \gamma H-H - \alpha r} > \frac{\alpha  + \gamma -\alpha\gamma}{ \alpha+\gamma - \alpha\gamma - 1 } \]
+\[ 1 + \frac{ H -\alpha\lambda\gamma H }{ \lambda \gamma H-H - \alpha r} > 1 + \frac{1}{ \alpha+\gamma - \alpha\gamma - 1 } \]
+\[ \frac{ H -\alpha\lambda\gamma H }{ \lambda \gamma H-H - \alpha r} >  \frac{1}{ \alpha+\gamma - \alpha\gamma - 1 } \]
+I'm not sure how to further analytically reduce this, but we see that this can happen taking as $\alpha \to 0$. Hence, the decentralized equilibrium can deliver too high growth if the monopoly power is very high.
+\pagebreak
+\problem{2}
+
+\problempart{(1)}
+The final good producer FOC in $x_j$ gives
+\[ p_j = \alpha x_j^{\alpha - 1}L^{1-\alpha} = \alpha x_j^{\alpha - 1} \]
+Then the monopolistic intermediate good producers satisfy
+\[ \alpha^2 x_j^{\alpha - 1} = 1 \]
+\[ p_j = 1/\alpha \]
+So
+\[ x_j = \alpha^{2/(1-\alpha)} \]
+\[ \pi_j = (p_j - 1) \alpha^{2/(1-\alpha)} = (1-\alpha)\alpha^{(1+\alpha)/(1-\alpha)} \]
+Then aggregate output is
+\[ Y = A x_j^\alpha = A \alpha^{2\alpha/(1-\alpha)}\]
+\[ X = \int_0^A x_j = A\alpha^{2/(1-\alpha)} \]
+Assuming investment in research $Z$ is determined,
+\[ C = Y - X - Z\]
+\problempart{(2)}
+The Bellman equation on $V$ is
+\[ r_t V - \dot{V} = \pi \]
+If there is free entry, $V = \mu$ (the cost of invention). So
+\[ r_t \mu = \pi \]
+\[ r_t = \mu^{-1}(1-\alpha)\alpha^{(1+\alpha)/(1-\alpha)} \]
+The growth rate is then
+\[ g = \frac{1}{\theta}(r_t - \rho) = \theta^{-1}(\mu^{-1}(1-\alpha)\alpha^{(1+\alpha)/(1-\alpha)} - \rho) \]
+The output growth rate grows at the same rate as consumption, so this is the growth rate of the economy. Then $\mu Z/ A = g$, and assuming $g > 0$ and transversality, this is the equilibrium growth rate.
+\problempart{(3)}
+Because the monopolist can lose their patent at rate $\xi$, the Bellman equation becomes
+\[ (r + \xi)V - \dot{V} = \pi \]
+The patent expiry does not affect the monopoly pricing, so $\pi$ is still unchanged, and hence we have
+\[ r + \xi = \mu^{-1}(1-\alpha)\alpha^{(1+\alpha)/(1-\alpha)} \]
+\[ r = \mu^{-1}(1-\alpha)\alpha^{(1+\alpha)/(1-\alpha)} - \xi \]
+The growth rate is then
+\[ g = \frac{1}{\theta}(r - \rho) = \theta^{-1}(\mu^{-1}(1-\alpha)\alpha^{(1+\alpha)/(1-\alpha)} - \xi - \rho)\]
+Competitive firms charge price $1$, (no profits), so the quantity demanded is $x_j = \alpha^{1/(1-\alpha)}$. Let the measure of monopolistic intermediate good firms be $A_m$, and competitive intermeidate goods be $A_c$. Then we have
+
+\[ Y = A_m x_{jm}^\alpha + A_c x_{jc}^\alpha = A_m \alpha^{2\alpha/(1-\alpha)} + A_c \alpha^{\alpha/(1-\alpha)}\]
+\[ X = \int_0^A x_j = A_m \alpha^{2/(1-\alpha)} + A_c \alpha^{1/(1-\alpha)}  \]
+
+\problempart{(4)}
+Yes; because all current intermediate goods have no patents, the prices of these goods will be competitively determined and the final good production will be efficient. At the same time, because the government enforces patents going forward, the growth rate in the monopolistic patent case will be maintained because those patents should be respected, and hence the economy will also retain the same rate of innovation. In practice, this may be difficult to believe because doing so may erode trust in the government's enforcement of patents; i.e., inventors may be distrustful of the government's enforcement of patents in the future.
+\pagebreak
+
+\problem{3}
+\problempart{(1)}
+Intermediate good demand:
+\[ q(\nu, t) L x(\nu, t)^{-1/2} = p_x(\nu, t) \]
+Setting competitive price at marginal cost, we get
+\[  q(\nu, t) L x(\nu, t)^{-1/2} = \psi q(\nu, t) \]
+\[ x(\nu, t) = \left(\frac{\psi}{L} \right)^{-2} = 4\]
+Net aggregate production:
+\[ Y(t) = 2 \left[ \int_0^1 q(\nu, t) x(\nu, t)^{1/2} d\nu \right]L^{1/2} \]
+\[ = 4 Q(t) \]
+\[ Y(t) - X(t) = 4Q(t) - \frac{1}{2}4Q(t) = 2Q(t) \]
+\problempart{(2)}
+Objective function:
+\[ \max \int_0^\infty \exp(-0.02 t)\log C(t) \]
+Constraints:
+\[ C(t) + Z(t) = 2Q(t) \]
+\[ \dot{Q}(t) = (1.02 - 1)Z(t) \]
+or we can combine these into one
+\[ \dot{Q}(t) = 0.02 (2 Q(t) - C(t))\]
+\problempart{(3)}
+The current value Hamiltonian is
+\[ H = \log C(t) + \mu(t)(0.02(2Q(t) - C(t))) \]
+the FOCs are
+\[ \frac{1}{C} - 0.02 \mu = 0 \]
+\[ 0.02 \mu C = 1 \]
+\[ 0.04 \mu = - \dot{\mu} + 0.02 \mu \]
+\[ \lim_{t \to \infty} \exp(-0.02t)\mu(t)Q(t) = 0 \]
+
+\problempart{(4)}
+\[ 0.02 = - \dot{\mu}/\mu \]
+\[ \dot{\mu} C + \mu \dot{C} = 0 \]
+\[ \frac{\dot{C}}{C} = - \dot{\mu}/\mu = 0.02 \]
+\problempart{(5)}
+Bellman equation
+\[\left( r(t) + \frac{Z(\nu, t|q)}{q(\nu, t)} \right) V(\nu, t | q) - \dot{V}(\nu, t | q)= \pi(\nu, t | q)   \]
+Note this is the same Bellman equation we expect, but we have added the rate of creation for higher-quality products to the interest rate.
+\problempart{(6)}
+The monopolist wants to set price $q(\nu, t)$. If $\gamma < 2$, the competitive fringe forces the monopolist to reduce its price, and reduces innovation growth.
+\problempart{(7)}
+If $\gamma = 1$, there are no profits for the monopolist, and hence no incentive to innovate. Setting $\gamma = 2$ gives the normal monopolist pricing, which also has suboptimal growth rate. Hence the government really doesn't want to do either.
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
